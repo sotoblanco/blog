@@ -1,0 +1,25 @@
+title: Machine Learning Engineer
+description: Independent AI Consultant with 7+ years of experience
+url: "https://yourusername.github.io"
+baseurl: "/blog"
+
+# GitHub Pages settings
+source: docs
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Theme settings
+theme: minima
+
+# Markdown settings
+markdown: kramdown
+highlighter: rouge
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
