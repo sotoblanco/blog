@@ -1,6 +1,6 @@
 ---
 title: "Example Post with Quarto"
-date: "2024-01-20"
+date: "2025-08-31"
 tags: [quarto, jekyll, markdown]
 excerpt: "This is an example of how to write content in Quarto format"
 ---
