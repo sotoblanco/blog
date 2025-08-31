@@ -11,27 +11,55 @@ title: Blog
         <p>Welcome to my blog where I share insights about Machine Learning, AI technologies, and data science best practices.</p>
     </div>
 
-    <div class="posts-grid">
-        <article class="post-card">
-            <h3>Coming Soon: Deep Learning in Production</h3>
-            <p class="post-date">January 2024</p>
-            <p>Learn how to deploy and scale deep learning models in production environments...</p>
-            <span class="post-tag">Machine Learning</span>
-        </article>
+    <div class="posts-list">
+        {% if site.posts.size > 0 %}
+            {% for post in site.posts %}
+            <article class="post-item">
+                <div class="post-header">
+                    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+                    <p class="post-date">{{ post.date | date: "%B %d, %Y" }}</p>
+                </div>
+                <div class="post-content">
+                    {% if post.excerpt %}
+                        <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+                    {% else %}
+                        <p>{{ post.content | strip_html | truncatewords: 30 }}</p>
+                    {% endif %}
+                </div>
+                <div class="post-meta">
+                    {% if post.tags %}
+                        {% for tag in post.tags %}
+                            <span class="post-tag">{{ tag }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        {% else %}
+            <div class="no-posts">
+                <h3>Coming Soon!</h3>
+                <p>Blog posts will appear here once you add them to the <code>_posts/</code> folder.</p>
+                <div class="example-info">
+                    <h4>How to add a blog post:</h4>
+                    <ol>
+                        <li>Create a file in <code>docs/_posts/</code> with format: <code>YYYY-MM-DD-title.md</code></li>
+                        <li>Example: <code>2024-01-15-ai-in-action.md</code></li>
+                        <li>Start your file with:
+                            <pre><code>---
+layout: default
+title: "AI in Action"
+date: 2024-01-15
+tags: [machine-learning, ai]
+---
 
-        <article class="post-card">
-            <h3>Coming Soon: Data Pipeline Best Practices</h3>
-            <p class="post-date">January 2024</p>
-            <p>Discover efficient ways to build robust data pipelines for ML workflows...</p>
-            <span class="post-tag">Data Engineering</span>
-        </article>
+# AI in Action
 
-        <article class="post-card">
-            <h3>Coming Soon: AI Consulting Insights</h3>
-            <p class="post-date">January 2024</p>
-            <p>Lessons learned from helping businesses implement AI solutions...</p>
-            <span class="post-tag">Consulting</span>
-        </article>
+Your content here...</code></pre>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        {% endif %}
     </div>
 </div>
 
@@ -59,13 +87,13 @@ title: Blog
     line-height: 1.6;
 }
 
-.posts-grid {
-    display: grid;
+.posts-list {
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-.post-card {
+.post-item {
     background: #f8f9fa;
     padding: 2rem;
     border-radius: 10px;
@@ -73,28 +101,42 @@ title: Blog
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.post-card:hover {
+.post-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.post-card h3 {
+.post-header h3 {
+    margin: 0 0 0.5rem 0;
+}
+
+.post-header h3 a {
     color: #333;
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
+    text-decoration: none;
+    font-size: 1.4rem;
+}
+
+.post-header h3 a:hover {
+    color: #007bff;
 }
 
 .post-date {
     color: #007bff;
     font-size: 0.9rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem 0;
 }
 
-.post-card p:last-of-type {
+.post-content p {
     color: #555;
     line-height: 1.6;
     margin-bottom: 1rem;
+}
+
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .post-tag {
@@ -104,5 +146,61 @@ title: Blog
     border-radius: 15px;
     font-size: 0.8rem;
     font-weight: 500;
+}
+
+.no-posts {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.no-posts h3 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.example-info {
+    text-align: left;
+    max-width: 500px;
+    margin: 2rem auto 0;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.example-info h4 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.example-info ol {
+    margin-bottom: 1rem;
+}
+
+.example-info li {
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.example-info pre {
+    background: #f1f3f4;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+}
+
+.example-info code {
+    background: #f1f3f4;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9rem;
+}
+
+.example-info pre code {
+    background: none;
+    padding: 0;
 }
 </style>

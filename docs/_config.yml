@@ -16,6 +16,28 @@ theme: minima
 markdown: kramdown
 highlighter: rouge
 
+# Collections configuration
+collections:
+  notes:
+    output: true
+    permalink: /:collection/:name/
+  posts:
+    output: true
+    permalink: /:collection/:year/:month/:day/:title/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "notes"
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "default"
+
 # Exclude files from processing
 exclude:
   - README.md
