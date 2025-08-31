@@ -12,7 +12,7 @@ plugins:
 # Theme settings
 theme: minima
 
-# Markdown settings
+# Markdown settings - Keep kramdown for non-Quarto files
 markdown: kramdown
 highlighter: rouge
 
@@ -45,3 +45,6 @@ exclude:
   - Gemfile.lock
   - node_modules
   - vendor
+  - _quarto_source/
+  - _quarto.yml
+  - quarto-jekyll-template.html

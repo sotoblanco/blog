@@ -1,0 +1,22 @@
+project:
+  type: website
+  output-dir: _site
+
+format:
+  html:
+    theme: none
+    css: false
+    toc: false
+    html-math-method: katex
+    highlight-style: github
+    code-fold: false
+    embed-resources: false
+    minimal: true
+    template-partials:
+      - quarto-jekyll-template.html
+
+execute:
+  freeze: auto
+
+filters:
+  - jekyll-front-matter

@@ -1,0 +1,13 @@
+---
+layout: default
+title: "$title$"
+date: $date$
+$if(tags)$
+tags: [$for(tags)$"$tags$"$sep$, $endfor$]
+$endif$
+$if(excerpt)$
+excerpt: "$excerpt$"
+$endif$
+---
+
+$body$

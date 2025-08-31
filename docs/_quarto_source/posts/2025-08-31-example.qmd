@@ -1,0 +1,58 @@
+---
+title: "Example Post with Quarto"
+date: "2024-01-20"
+tags: [quarto, jekyll, markdown]
+excerpt: "This is an example of how to write content in Quarto format"
+---
+
+# Example Post with Quarto
+
+This post demonstrates advanced features available with Quarto.
+
+## Code with Syntax Highlighting
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generate data
+x = np.linspace(0, 2*np.pi, 100)
+y = np.sin(x)
+
+# Plot
+plt.figure(figsize=(10, 6))
+plt.plot(x, y, 'b-', linewidth=2)
+plt.title('Sine Wave')
+plt.xlabel('x')
+plt.ylabel('sin(x)')
+plt.grid(True)
+plt.show()
+```
+
+## Mathematical Equations
+
+You can include LaTeX equations:
+
+$$E = mc^2$$
+
+And inline math like $\alpha + \beta = \gamma$.
+
+## Tables
+
+| Feature | Markdown | Quarto |
+|---------|----------|--------|
+| Basic formatting | ✓ | ✓ |
+| Code highlighting | ✓ | ✓ |
+| Math equations | Limited | ✓ |
+| Interactive plots | ✗ | ✓ |
+
+## Callout Blocks
+
+::: {.callout-note}
+This is a note callout block that provides additional information.
+:::
+
+::: {.callout-tip}
+## Pro Tip
+Use Quarto for enhanced formatting and interactive elements!
+:::
