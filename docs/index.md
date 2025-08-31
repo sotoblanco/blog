@@ -27,8 +27,14 @@ title: Home
   <div class="table-container">
     <table class="content-table">
       <tbody>
+        <tr>
+          <td class="date-cell">Dec 31</td>
+          <td class="title-cell">
+            <a href="https://pastorsoto.substack.com/p/my-ai-engineering-curriculum-for" target="_blank">My AI Engineering Curriculum for 2025</a>
+          </td>
+        </tr>
         {% assign all_content = site.posts | concat: site.notes | sort: 'date' | reverse %}
-        {% for item in all_content limit: 8 %}
+        {% for item in all_content limit: 7 %}
         <tr>
           <td class="date-cell">{{ item.date | date: "%b %d" }}</td>
           <td class="title-cell">
