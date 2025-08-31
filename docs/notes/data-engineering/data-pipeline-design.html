@@ -1,0 +1,269 @@
+---
+layout: default
+title: Data Pipeline Design
+---
+
+<style>
+body {
+    background: #1a1a1a;
+    color: #e0e0e0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #404040;
+}
+
+.title {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+    color: #b0b0b0;
+    font-size: 1.1rem;
+    margin: 0 0 1rem 0;
+}
+
+.tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    background: #404040;
+    color: #e0e0e0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.date {
+    color: #808080;
+    font-size: 0.9rem;
+}
+
+.content {
+    background: #2d2d2d;
+    border-radius: 8px;
+    padding: 2rem;
+    border: 1px solid #404040;
+}
+
+h1, h2, h3 {
+    color: #ffffff;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 1.8rem;
+    border-bottom: 1px solid #404040;
+    padding-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+ul, ol {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+code {
+    background: #404040;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9rem;
+}
+
+pre {
+    background: #404040;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
+blockquote {
+    border-left: 4px solid #0066cc;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: #b0b0b0;
+    font-style: italic;
+}
+
+strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+</style>
+
+<div class="container">
+    <a href="../notes.html" class="back-link">← Back to Notes</a>
+    
+    <div class="header">
+        <h1 class="title">Data Pipeline Design</h1>
+        <p class="subtitle">Best practices for building scalable and reliable data pipelines</p>
+        <div class="tags">
+            <span class="tag">DATA</span>
+            <span class="tag">PIPELINES</span>
+            <span class="tag">ETL</span>
+            <span class="tag">ARCHITECTURE</span>
+        </div>
+        <p class="date">January 20, 2024</p>
+    </div>
+
+    <div class="content">
+        <h2>Pipeline Architecture Patterns</h2>
+
+        <h3>Batch Processing</h3>
+        <ul>
+            <li><strong>Use cases:</strong> Daily/weekly data processing, historical analysis</li>
+            <li><strong>Tools:</strong> Apache Airflow, Luigi, AWS Step Functions</li>
+            <li><strong>Considerations:</strong> Latency vs throughput, resource optimization</li>
+        </ul>
+
+        <h3>Stream Processing</h3>
+        <ul>
+            <li><strong>Use cases:</strong> Real-time analytics, event-driven applications</li>
+            <li><strong>Tools:</strong> Apache Kafka, Apache Flink, AWS Kinesis</li>
+            <li><strong>Considerations:</strong> Event ordering, exactly-once processing</li>
+        </ul>
+
+        <h3>Lambda Architecture</h3>
+        <ul>
+            <li><strong>Components:</strong> Batch layer + Speed layer + Serving layer</li>
+            <li><strong>Use cases:</strong> Real-time + batch processing requirements</li>
+            <li><strong>Trade-offs:</strong> Complexity vs flexibility</li>
+        </ul>
+
+        <h2>Data Quality & Validation</h2>
+
+        <h3>Schema Evolution</h3>
+        <ul>
+            <li><strong>Backward compatibility:</strong> New fields optional</li>
+            <li><strong>Forward compatibility:</strong> Old fields deprecated gracefully</li>
+            <li><strong>Tools:</strong> Apache Avro, Protocol Buffers, JSON Schema</li>
+        </ul>
+
+        <h3>Data Validation</h3>
+        <ul>
+            <li><strong>Types:</strong> Schema validation, business rule validation</li>
+            <li><strong>Tools:</strong> Great Expectations, Deequ, custom validators</li>
+            <li><strong>Monitoring:</strong> Data quality metrics, alerting</li>
+        </ul>
+
+        <h3>Error Handling</h3>
+        <ul>
+            <li><strong>Dead letter queues:</strong> Failed records processing</li>
+            <li><strong>Retry mechanisms:</strong> Exponential backoff, circuit breakers</li>
+            <li><strong>Monitoring:</strong> Error rates, failure patterns</li>
+        </ul>
+
+        <h2>Performance Optimization</h2>
+
+        <h3>Partitioning Strategies</h3>
+        <ul>
+            <li><strong>Time-based:</strong> Daily/hourly partitions</li>
+            <li><strong>Hash-based:</strong> Even distribution across partitions</li>
+            <li><strong>Composite:</strong> Multiple partition keys</li>
+        </ul>
+
+        <h3>Caching Strategies</h3>
+        <ul>
+            <li><strong>Application cache:</strong> Redis, Memcached</li>
+            <li><strong>Query cache:</strong> Database query results</li>
+            <li><strong>CDN:</strong> Static data delivery</li>
+        </ul>
+
+        <h3>Resource Management</h3>
+        <ul>
+            <li><strong>Auto-scaling:</strong> Based on workload</li>
+            <li><strong>Resource limits:</strong> CPU, memory, I/O</li>
+            <li><strong>Cost optimization:</strong> Spot instances, reserved capacity</li>
+        </ul>
+
+        <h2>Monitoring & Observability</h2>
+
+        <h3>Metrics to Track</h3>
+        <ul>
+            <li><strong>Throughput:</strong> Records processed per second</li>
+            <li><strong>Latency:</strong> End-to-end processing time</li>
+            <li><strong>Error rates:</strong> Failed records percentage</li>
+            <li><strong>Resource utilization:</strong> CPU, memory, disk I/O</li>
+        </ul>
+
+        <h3>Logging Best Practices</h3>
+        <ul>
+            <li><strong>Structured logging:</strong> JSON format</li>
+            <li><strong>Log levels:</strong> DEBUG, INFO, WARN, ERROR</li>
+            <li><strong>Correlation IDs:</strong> Track requests across services</li>
+        </ul>
+
+        <h3>Alerting</h3>
+        <ul>
+            <li><strong>Threshold-based:</strong> Error rate > 5%</li>
+            <li><strong>Anomaly detection:</strong> Unusual patterns</li>
+            <li><strong>Escalation:</strong> Multiple notification channels</li>
+        </ul>
+
+        <blockquote>
+            <strong>Key Principle:</strong> Always design your pipelines with failure in mind. Implement proper error handling, retry mechanisms, and data validation at every step.
+        </blockquote>
+    </div>
+</div>

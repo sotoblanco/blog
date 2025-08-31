@@ -1,39 +1,6 @@
-#!/bin/bash
-
-# Add Note Script for Simple HTML Notes System
-# Usage: ./add-note.sh "Note Title" "category" "description" "tags"
-
-if [ $# -lt 4 ]; then
-    echo "Usage: $0 \"Note Title\" \"category\" \"description\" \"tags\""
-    echo "Example: $0 \"Docker Best Practices\" \"data-engineering\" \"Essential Docker commands and best practices\" \"docker,containers,devops\""
-    exit 1
-fi
-
-TITLE="$1"
-CATEGORY="$2"
-DESCRIPTION="$3"
-TAGS="$4"
-
-# Convert title to filename
-FILENAME=$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-\|-$//g')
-
-# Create category directory if it doesn't exist
-mkdir -p "notes/$CATEGORY"
-
-# Create the HTML file
-FILEPATH="notes/$CATEGORY/$FILENAME.html"
-
-# Get current date
-DATE=$(date +%Y-%m-%d)
-
-# Convert tags to HTML format
-TAGS_HTML=$(echo "$TAGS" | tr ',' '\n' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//' | tr '[:lower:]' '[:upper:]' | sed 's/^/<span class="tag">/' | sed 's/$/<\/span>/' | tr '\n' ' ')
-
-# Create the HTML file
-cat > "$FILEPATH" << EOF
 ---
 layout: default
-title: "$TITLE"
+title: Your Note Title
 ---
 
 <style>
@@ -190,28 +157,37 @@ a:hover {
     <a href="../notes.html" class="back-link">← Back to Notes</a>
     
     <div class="header">
-        <h1 class="title">$TITLE</h1>
-        <p class="subtitle">$DESCRIPTION</p>
+        <h1 class="title">Your Note Title</h1>
+        <p class="subtitle">Brief description of what this note covers</p>
         <div class="tags">
-            $TAGS_HTML
+            <span class="tag">TAG1</span>
+            <span class="tag">TAG2</span>
+            <span class="tag">TAG3</span>
         </div>
-        <p class="date">$DATE</p>
+        <p class="date">January 1, 2024</p>
     </div>
 
     <div class="content">
         <h2>Introduction</h2>
-        <p>$DESCRIPTION</p>
+        <p>Start with an introduction to your topic. This should give readers a clear understanding of what they'll learn from this note.</p>
 
-        <h2>Main Content</h2>
-        <p>Add your content here...</p>
-
-        <h3>Key Points</h3>
+        <h2>Main Section 1</h2>
+        <h3>Subsection 1.1</h3>
         <ul>
-            <li><strong>Point 1:</strong> Description</li>
-            <li><strong>Point 2:</strong> Description</li>
-            <li><strong>Point 3:</strong> Description</li>
+            <li><strong>Key Point 1:</strong> Explanation of the key point</li>
+            <li><strong>Key Point 2:</strong> Another important concept</li>
+            <li><strong>Key Point 3:</strong> Additional information</li>
         </ul>
 
+        <h3>Subsection 1.2</h3>
+        <p>Use bullet points for lists:</p>
+        <ul>
+            <li>First item</li>
+            <li>Second item</li>
+            <li>Third item</li>
+        </ul>
+
+        <h2>Main Section 2</h2>
         <h3>Code Examples</h3>
         <p>When you need to show code:</p>
         <pre><code>def example_function():
@@ -220,8 +196,15 @@ a:hover {
 
         <h3>Important Notes</h3>
         <blockquote>
-            <strong>Note:</strong> Add important information, warnings, or tips here.
+            <strong>Note:</strong> Use blockquotes for important information, warnings, or tips.
         </blockquote>
+
+        <h2>Best Practices</h2>
+        <ol>
+            <li><strong>First practice:</strong> Description</li>
+            <li><strong>Second practice:</strong> Description</li>
+            <li><strong>Third practice:</strong> Description</li>
+        </ol>
 
         <h2>Conclusion</h2>
         <p>Summarize the key takeaways from this note.</p>
@@ -230,22 +213,7 @@ a:hover {
         <ul>
             <li><a href="related-note-1.html">Related Note 1</a></li>
             <li><a href="related-note-2.html">Related Note 2</a></li>
+            <li><a href="related-note-3.html">Related Note 3</a></li>
         </ul>
     </div>
 </div>
-EOF
-
-echo "✅ Created note: $FILEPATH"
-echo ""
-echo "📝 Next steps:"
-echo "1. Edit the content in $FILEPATH"
-echo "2. Update the navigation in docs/notes.md"
-echo "3. Add the note to the appropriate category section"
-echo ""
-echo "🔗 To add to navigation, add this HTML to docs/notes.md:"
-echo "<div class=\"nav-item nav-subitem\">"
-echo "    <a href=\"notes/$CATEGORY/$FILENAME.html\" class=\"nav-link\">$TITLE</a>"
-echo "</div>"
-echo ""
-echo "📋 And add this to the notes grid:"
-echo "<li><a href=\"notes/$CATEGORY/$FILENAME.html\">$TITLE</a></li>"
