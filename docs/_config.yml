@@ -40,6 +40,9 @@ defaults:
 
 # External posts configuration
 external_posts:
+  - title: "AI in Healthcare? Where and how?"
+    date: 2025-08-25
+    external_url: "https://pastorsoto.substack.com/p/ai-in-healthcare-where-and-how"
   - title: "My AI Engineering Curriculum for 2025"
     date: 2024-12-31
     external_url: "https://pastorsoto.substack.com/p/my-ai-engineering-curriculum-for"

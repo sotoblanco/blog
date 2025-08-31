@@ -27,10 +27,12 @@ title: Home
   <div class="table-container">
     <table class="content-table">
       <tbody>
-        {% assign all_content = site.posts | concat: site.notes | sort: 'date' | reverse %}
-        {% assign external_content = site.external_posts | default: array %}
-        {% assign combined_content = all_content | concat: external_content | sort: 'date' | reverse %}
-        {% for item in combined_content limit: 8 %}
+        {% assign all_content = site.posts | concat: site.notes %}
+        {% if site.external_posts %}
+            {% assign all_content = all_content | concat: site.external_posts %}
+        {% endif %}
+        {% assign sorted_content = all_content | sort: 'date' | reverse %}
+        {% for item in sorted_content limit: 8 %}
         <tr>
           <td class="date-cell">{{ item.date | date: "%b %d, %Y" }}</td>
           <td class="title-cell">

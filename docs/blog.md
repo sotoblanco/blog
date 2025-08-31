@@ -12,12 +12,16 @@ title: Blog
     </div>
 
     <div class="posts-list">
-        {% assign all_posts = site.posts | concat: site.external_posts | sort: 'date' | reverse %}
-        {% if all_posts.size > 0 %}
+        {% assign all_posts = site.posts %}
+        {% if site.external_posts %}
+            {% assign all_posts = all_posts | concat: site.external_posts %}
+        {% endif %}
+        {% assign sorted_posts = all_posts | sort: 'date' | reverse %}
+        {% if sorted_posts.size > 0 %}
             <div class="posts-table">
                 <table class="post-table">
                     <tbody>
-                        {% for post in all_posts %}
+                        {% for post in sorted_posts %}
                         <tr>
                             <td class="post-date">{{ post.date | date: "%b %d, %Y" }}</td>
                             <td class="post-title">
