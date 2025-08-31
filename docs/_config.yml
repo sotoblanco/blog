@@ -43,33 +43,42 @@ external_posts:
   - title: "AI in Healthcare? Where and how?"
     date: 2025-08-25
     external_url: "https://pastorsoto.substack.com/p/ai-in-healthcare-where-and-how"
+
   - title: "My AI Engineering Curriculum for 2025"
     date: 2024-12-31
     external_url: "https://pastorsoto.substack.com/p/my-ai-engineering-curriculum-for"
+
   - title: "A Roadmap for ML Interview preparation"
     date: 2025-04-26
     external_url: "https://pastorsoto.substack.com/p/a-roadmap-for-ml-interview-preparation"
-  - title: Episode 1: Kicking Off Our AI Engineering Journey with Liverpool FC
+
+  - title: "Episode 1: Kicking Off Our AI Engineering Journey with Liverpool FC"
     date: 2025-01-04
-    external_url: https://pastorsoto.substack.com/p/week-1-kicking-off-our-ai-engineering
-  - title: Episode 2: Let's meet - AI Engineering Chapter 1
+    external_url: "https://pastorsoto.substack.com/p/week-1-kicking-off-our-ai-engineering"
+
+  - title: 2Episode 2: Let's meet - AI Engineering Chapter 1"
     date: 2025-01-12
-    external_url: https://pastorsoto.substack.com/p/lets-meet-ai-engineering-chapter
-  - title: Episode 3: AI Engineering Chapter 2 - Theory vs Practice
+    external_url: "https://pastorsoto.substack.com/p/lets-meet-ai-engineering-chapter"
+
+  - title: "Episode 3: AI Engineering Chapter 2 - Theory vs Practice"
     date: 2025-01-25
-    external_url: https://pastorsoto.substack.com/p/ai-engineering-chapter-2-theory-vs
-  - title: Episode 4: Beyond the Pitch: Crafting and Evaluating AI Solutions for Liverpool FC
+    external_url: "https://pastorsoto.substack.com/p/ai-engineering-chapter-2-theory-vs"
+
+  - title: "Episode 4: Beyond the Pitch: Crafting and Evaluating AI Solutions for Liverpool FC"
     date: 2025-02-01
-    external_url: https://pastorsoto.substack.com/p/beyond-the-pitch-crafting-and-evaluating
-  - title: Episode 5: The Evaluation Gambit
+    external_url: "https://pastorsoto.substack.com/p/beyond-the-pitch-crafting-and-evaluating"
+
+  - title: "Episode 5: The Evaluation Gambit"
     date: 2025-03-01
-    external_url: https://pastorsoto.substack.com/p/episode-5-the-evaluation-gambit
-  - title: Episode 6: Chapter 3 AI Engineering - The Algorithmic Advantage
+    external_url: "https://pastorsoto.substack.com/p/episode-5-the-evaluation-gambit"
+
+  - title: "Episode 6: Chapter 3 AI Engineering - The Algorithmic Advantage"
     date: 2025-03-01
-    external_url: https://pastorsoto.substack.com/p/episode-6-chapter-3-ai-engineering
-  - title: Episode 7 – AI Evaluation-Driven Development in the Wild: Road to Anfield
+    external_url: "https://pastorsoto.substack.com/p/episode-6-chapter-3-ai-engineering"
+
+  - title: "Episode 7 – AI Evaluation-Driven Development in the Wild: Road to Anfield"
     date: 2025-08-03
-    external_url: https://pastorsoto.substack.com/p/episode-7-ai-evaluation-driven-development
+    external_url: "https://pastorsoto.substack.com/p/episode-7-ai-evaluation-driven-development"
 # Exclude files from processing
 exclude:
   - README.md
