@@ -37,146 +37,142 @@ title: "$TITLE"
 ---
 
 <style>
-body {
-    background: #1a1a1a;
-    color: #e0e0e0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 2rem;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.header {
+/* Note-specific styling that matches the site theme */
+.note-header {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid #404040;
+    border-bottom: 1px solid #e9ecef;
 }
 
-.title {
-    color: #ffffff;
+.note-title {
+    color: #333;
     font-size: 2.5rem;
     font-weight: 400;
     margin: 0 0 0.5rem 0;
 }
 
-.subtitle {
-    color: #b0b0b0;
+.note-subtitle {
+    color: #666;
     font-size: 1.1rem;
     margin: 0 0 1rem 0;
 }
 
-.tags {
+.note-tags {
     display: flex;
     gap: 0.5rem;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
 }
 
-.tag {
-    background: #404040;
-    color: #e0e0e0;
+.note-tag {
+    background: #007bff;
+    color: white;
     padding: 0.25rem 0.75rem;
     border-radius: 4px;
     font-size: 0.8rem;
     font-weight: 500;
 }
 
-.date {
-    color: #808080;
+.note-date {
+    color: #666;
     font-size: 0.9rem;
 }
 
-.content {
-    background: #2d2d2d;
+.note-content {
+    background: #f8f9fa;
     border-radius: 8px;
     padding: 2rem;
-    border: 1px solid #404040;
+    border: 1px solid #e9ecef;
+    margin-top: 2rem;
 }
 
-h1, h2, h3 {
-    color: #ffffff;
+.note-content h1, .note-content h2, .note-content h3 {
+    color: #333;
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
 
-h1 {
+.note-content h1 {
     font-size: 1.8rem;
-    border-bottom: 1px solid #404040;
+    border-bottom: 1px solid #e9ecef;
     padding-bottom: 0.5rem;
 }
 
-h2 {
+.note-content h2 {
     font-size: 1.4rem;
 }
 
-h3 {
+.note-content h3 {
     font-size: 1.2rem;
 }
 
-p {
+.note-content p {
     margin-bottom: 1rem;
+    color: #333;
 }
 
-ul, ol {
+.note-content ul, .note-content ol {
     margin-bottom: 1rem;
     padding-left: 2rem;
 }
 
-li {
+.note-content li {
     margin-bottom: 0.5rem;
+    color: #333;
 }
 
-code {
-    background: #404040;
+.note-content code {
+    background: #e9ecef;
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
     font-size: 0.9rem;
+    color: #333;
 }
 
-pre {
-    background: #404040;
+.note-content pre {
+    background: #f8f9fa;
     padding: 1rem;
     border-radius: 8px;
     overflow-x: auto;
     margin: 1rem 0;
+    border: 1px solid #e9ecef;
 }
 
-pre code {
+.note-content pre code {
     background: none;
     padding: 0;
 }
 
-blockquote {
-    border-left: 4px solid #0066cc;
+.note-content blockquote {
+    border-left: 4px solid #007bff;
     padding-left: 1rem;
     margin: 1rem 0;
-    color: #b0b0b0;
+    color: #666;
     font-style: italic;
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 4px;
 }
 
-strong {
-    color: #ffffff;
+.note-content strong {
+    color: #333;
     font-weight: 600;
 }
 
-a {
-    color: #0066cc;
+.note-content a {
+    color: #007bff;
     text-decoration: none;
 }
 
-a:hover {
+.note-content a:hover {
     text-decoration: underline;
 }
 
 .back-link {
     display: inline-block;
     margin-bottom: 2rem;
-    color: #0066cc;
+    color: #007bff;
     text-decoration: none;
     font-weight: 500;
 }
@@ -184,21 +180,40 @@ a:hover {
 .back-link:hover {
     text-decoration: underline;
 }
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .note-title {
+        font-size: 2rem;
+    }
+    
+    .note-content {
+        padding: 1rem;
+    }
+    
+    .note-tags {
+        gap: 0.25rem;
+    }
+    
+    .note-tag {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.6rem;
+    }
+}
 </style>
 
-<div class="container">
-    <a href="../notes.html" class="back-link">← Back to Notes</a>
+<div class="note-header">
+    <a href="/notes" class="back-link">← Back to Notes</a>
     
-    <div class="header">
-        <h1 class="title">$TITLE</h1>
-        <p class="subtitle">$DESCRIPTION</p>
-        <div class="tags">
-            $TAGS_HTML
-        </div>
-        <p class="date">$DATE</p>
+    <h1 class="note-title">$TITLE</h1>
+    <p class="note-subtitle">$DESCRIPTION</p>
+    <div class="note-tags">
+        $TAGS_HTML
     </div>
+    <p class="note-date">$DATE</p>
+</div>
 
-    <div class="content">
+<div class="note-content">
         <h2>Introduction</h2>
         <p>$DESCRIPTION</p>
 

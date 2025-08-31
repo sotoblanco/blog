@@ -2,7 +2,7 @@
 
 ## 🎯 Overview
 
-This is a simplified notes system that uses HTML files instead of complex JavaScript. Each note is a standalone HTML file that you can edit directly.
+This is a simplified notes system that uses HTML files instead of complex JavaScript. Each note is a standalone HTML file that you can edit directly. The notes use the same light theme as the rest of your site for consistency.
 
 ## 📁 File Structure
 
@@ -37,7 +37,7 @@ cd docs
 ```
 
 The script will:
-- ✅ Create an HTML file with proper styling
+- ✅ Create an HTML file with proper styling (light theme)
 - ✅ Generate a kebab-case filename
 - ✅ Create the category directory if needed
 - ✅ Show you the HTML to add to navigation
@@ -59,40 +59,44 @@ title: Your Note Title
 ---
 
 <style>
-/* All the styling is included here */
+/* Note-specific styling that matches the site theme */
+.note-header { ... }
+.note-title { ... }
+.note-subtitle { ... }
+.note-tags { ... }
+.note-content { ... }
 </style>
 
-<div class="container">
-    <a href="../notes.html" class="back-link">← Back to Notes</a>
+<div class="note-header">
+    <a href="/notes" class="back-link">← Back to Notes</a>
     
-    <div class="header">
-        <h1 class="title">Your Note Title</h1>
-        <p class="subtitle">Description</p>
-        <div class="tags">
-            <span class="tag">TAG1</span>
-            <span class="tag">TAG2</span>
-        </div>
-        <p class="date">Date</p>
+    <h1 class="note-title">Your Note Title</h1>
+    <p class="note-subtitle">Description</p>
+    <div class="note-tags">
+        <span class="note-tag">TAG1</span>
+        <span class="note-tag">TAG2</span>
     </div>
+    <p class="note-date">Date</p>
+</div>
 
-    <div class="content">
-        <!-- Your content here -->
-    </div>
+<div class="note-content">
+    <!-- Your content here -->
 </div>
 ```
 
 ## 🎨 Features
 
 ### Styling
-- **Dark theme** with excellent readability
+- **Light theme** that matches your site design
 - **Responsive design** that works on all devices
 - **Code highlighting** for code blocks
 - **Clean typography** with proper spacing
+- **Consistent colors** with your site's palette
 
 ### Navigation
 - **Expandable sidebar** with categories
 - **Direct links** to HTML files
-- **Back navigation** from each note
+- **Back navigation** from each note (fixed path: `/notes`)
 - **Grid layout** for easy browsing
 
 ### Content Support
@@ -173,12 +177,19 @@ See these files for examples:
 2. **Styling issues**: Ensure the HTML file has the complete style section
 3. **Navigation problems**: Check that category names match exactly
 4. **Broken links**: Verify file paths are correct
+5. **Back button not working**: Ensure it points to `/notes` (not relative paths)
 
 ### File Paths
 
 Make sure file paths in the navigation are correct:
 - ✅ `notes/data-engineering/my-note.html`
 - ❌ `_notes/data-engineering/my-note.html`
+
+### Back Button
+
+The back button should always point to `/notes`:
+- ✅ `<a href="/notes" class="back-link">← Back to Notes</a>`
+- ❌ `<a href="../" class="back-link">← Back to Notes</a>`
 
 ## ✨ Advantages of This Approach
 
@@ -188,5 +199,17 @@ Make sure file paths in the navigation are correct:
 - **Flexible**: Full control over styling and content
 - **Portable**: Can be easily moved or backed up
 - **SEO-friendly**: Each note is a proper HTML page
+- **Consistent**: Matches your site's design theme
+- **Fixed navigation**: Back button works correctly
+
+## 🎨 Theme Details
+
+The notes use a light theme that matches your site:
+- **Background**: White (#fff)
+- **Text**: Dark gray (#333)
+- **Secondary text**: Medium gray (#666)
+- **Accent color**: Blue (#007bff)
+- **Borders**: Light gray (#e9ecef)
+- **Content background**: Light gray (#f8f9fa)
 
 The system is now much simpler and more reliable! Start by exploring the existing notes and then create your own using the provided tools and templates.

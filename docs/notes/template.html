@@ -4,146 +4,142 @@ title: Your Note Title
 ---
 
 <style>
-body {
-    background: #1a1a1a;
-    color: #e0e0e0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 2rem;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.header {
+/* Note-specific styling that matches the site theme */
+.note-header {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid #404040;
+    border-bottom: 1px solid #e9ecef;
 }
 
-.title {
-    color: #ffffff;
+.note-title {
+    color: #333;
     font-size: 2.5rem;
     font-weight: 400;
     margin: 0 0 0.5rem 0;
 }
 
-.subtitle {
-    color: #b0b0b0;
+.note-subtitle {
+    color: #666;
     font-size: 1.1rem;
     margin: 0 0 1rem 0;
 }
 
-.tags {
+.note-tags {
     display: flex;
     gap: 0.5rem;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
 }
 
-.tag {
-    background: #404040;
-    color: #e0e0e0;
+.note-tag {
+    background: #007bff;
+    color: white;
     padding: 0.25rem 0.75rem;
     border-radius: 4px;
     font-size: 0.8rem;
     font-weight: 500;
 }
 
-.date {
-    color: #808080;
+.note-date {
+    color: #666;
     font-size: 0.9rem;
 }
 
-.content {
-    background: #2d2d2d;
+.note-content {
+    background: #f8f9fa;
     border-radius: 8px;
     padding: 2rem;
-    border: 1px solid #404040;
+    border: 1px solid #e9ecef;
+    margin-top: 2rem;
 }
 
-h1, h2, h3 {
-    color: #ffffff;
+.note-content h1, .note-content h2, .note-content h3 {
+    color: #333;
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
 
-h1 {
+.note-content h1 {
     font-size: 1.8rem;
-    border-bottom: 1px solid #404040;
+    border-bottom: 1px solid #e9ecef;
     padding-bottom: 0.5rem;
 }
 
-h2 {
+.note-content h2 {
     font-size: 1.4rem;
 }
 
-h3 {
+.note-content h3 {
     font-size: 1.2rem;
 }
 
-p {
+.note-content p {
     margin-bottom: 1rem;
+    color: #333;
 }
 
-ul, ol {
+.note-content ul, .note-content ol {
     margin-bottom: 1rem;
     padding-left: 2rem;
 }
 
-li {
+.note-content li {
     margin-bottom: 0.5rem;
+    color: #333;
 }
 
-code {
-    background: #404040;
+.note-content code {
+    background: #e9ecef;
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
     font-size: 0.9rem;
+    color: #333;
 }
 
-pre {
-    background: #404040;
+.note-content pre {
+    background: #f8f9fa;
     padding: 1rem;
     border-radius: 8px;
     overflow-x: auto;
     margin: 1rem 0;
+    border: 1px solid #e9ecef;
 }
 
-pre code {
+.note-content pre code {
     background: none;
     padding: 0;
 }
 
-blockquote {
-    border-left: 4px solid #0066cc;
+.note-content blockquote {
+    border-left: 4px solid #007bff;
     padding-left: 1rem;
     margin: 1rem 0;
-    color: #b0b0b0;
+    color: #666;
     font-style: italic;
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 4px;
 }
 
-strong {
-    color: #ffffff;
+.note-content strong {
+    color: #333;
     font-weight: 600;
 }
 
-a {
-    color: #0066cc;
+.note-content a {
+    color: #007bff;
     text-decoration: none;
 }
 
-a:hover {
+.note-content a:hover {
     text-decoration: underline;
 }
 
 .back-link {
     display: inline-block;
     margin-bottom: 2rem;
-    color: #0066cc;
+    color: #007bff;
     text-decoration: none;
     font-weight: 500;
 }
@@ -151,69 +147,87 @@ a:hover {
 .back-link:hover {
     text-decoration: underline;
 }
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .note-title {
+        font-size: 2rem;
+    }
+    
+    .note-content {
+        padding: 1rem;
+    }
+    
+    .note-tags {
+        gap: 0.25rem;
+    }
+    
+    .note-tag {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.6rem;
+    }
+}
 </style>
 
-<div class="container">
-    <a href="../" class="back-link">← Back to Notes</a>
+<div class="note-header">
+    <a href="/notes" class="back-link">← Back to Notes</a>
     
-    <div class="header">
-        <h1 class="title">Your Note Title</h1>
-        <p class="subtitle">Brief description of what this note covers</p>
-        <div class="tags">
-            <span class="tag">TAG1</span>
-            <span class="tag">TAG2</span>
-            <span class="tag">TAG3</span>
-        </div>
-        <p class="date">January 1, 2024</p>
+    <h1 class="note-title">Your Note Title</h1>
+    <p class="note-subtitle">Brief description of what this note covers</p>
+    <div class="note-tags">
+        <span class="note-tag">TAG1</span>
+        <span class="note-tag">TAG2</span>
+        <span class="note-tag">TAG3</span>
     </div>
+    <p class="note-date">January 1, 2024</p>
+</div>
 
-    <div class="content">
-        <h2>Introduction</h2>
-        <p>Start with an introduction to your topic. This should give readers a clear understanding of what they'll learn from this note.</p>
+<div class="note-content">
+    <h2>Introduction</h2>
+    <p>Start with an introduction to your topic. This should give readers a clear understanding of what they'll learn from this note.</p>
 
-        <h2>Main Section 1</h2>
-        <h3>Subsection 1.1</h3>
-        <ul>
-            <li><strong>Key Point 1:</strong> Explanation of the key point</li>
-            <li><strong>Key Point 2:</strong> Another important concept</li>
-            <li><strong>Key Point 3:</strong> Additional information</li>
-        </ul>
+    <h2>Main Section 1</h2>
+    <h3>Subsection 1.1</h3>
+    <ul>
+        <li><strong>Key Point 1:</strong> Explanation of the key point</li>
+        <li><strong>Key Point 2:</strong> Another important concept</li>
+        <li><strong>Key Point 3:</strong> Additional information</li>
+    </ul>
 
-        <h3>Subsection 1.2</h3>
-        <p>Use bullet points for lists:</p>
-        <ul>
-            <li>First item</li>
-            <li>Second item</li>
-            <li>Third item</li>
-        </ul>
+    <h3>Subsection 1.2</h3>
+    <p>Use bullet points for lists:</p>
+    <ul>
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+    </ul>
 
-        <h2>Main Section 2</h2>
-        <h3>Code Examples</h3>
-        <p>When you need to show code:</p>
-        <pre><code>def example_function():
+    <h2>Main Section 2</h2>
+    <h3>Code Examples</h3>
+    <p>When you need to show code:</p>
+    <pre><code>def example_function():
     """This is an example function."""
     return "Hello, World!"</code></pre>
 
-        <h3>Important Notes</h3>
-        <blockquote>
-            <strong>Note:</strong> Use blockquotes for important information, warnings, or tips.
-        </blockquote>
+    <h3>Important Notes</h3>
+    <blockquote>
+        <strong>Note:</strong> Use blockquotes for important information, warnings, or tips.
+    </blockquote>
 
-        <h2>Best Practices</h2>
-        <ol>
-            <li><strong>First practice:</strong> Description</li>
-            <li><strong>Second practice:</strong> Description</li>
-            <li><strong>Third practice:</strong> Description</li>
-        </ol>
+    <h2>Best Practices</h2>
+    <ol>
+        <li><strong>First practice:</strong> Description</li>
+        <li><strong>Second practice:</strong> Description</li>
+        <li><strong>Third practice:</strong> Description</li>
+    </ol>
 
-        <h2>Conclusion</h2>
-        <p>Summarize the key takeaways from this note.</p>
+    <h2>Conclusion</h2>
+    <p>Summarize the key takeaways from this note.</p>
 
-        <h2>Related Topics</h2>
-        <ul>
-            <li><a href="related-note-1.html">Related Note 1</a></li>
-            <li><a href="related-note-2.html">Related Note 2</a></li>
-            <li><a href="related-note-3.html">Related Note 3</a></li>
-        </ul>
-    </div>
+    <h2>Related Topics</h2>
+    <ul>
+        <li><a href="related-note-1.html">Related Note 1</a></li>
+        <li><a href="related-note-2.html">Related Note 2</a></li>
+        <li><a href="related-note-3.html">Related Note 3</a></li>
+    </ul>
 </div>
