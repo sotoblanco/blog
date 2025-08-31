@@ -27,10 +27,19 @@ title: Home
   <div class="table-container">
     <table class="content-table">
       <tbody>
-        {% assign all_content = site.posts | concat: site.notes %}
+        {% comment %} Handle external posts first {% endcomment %}
         {% if site.external_posts %}
-            {% assign all_content = all_content | concat: site.external_posts %}
+            {% for post in site.external_posts limit: 8 %}
+            <tr>
+                <td class="date-cell">{{ post.date | date: "%b %d, %Y" }}</td>
+                <td class="title-cell">
+                    <a href="{{ post.external_url }}" target="_blank">{{ post.title }}</a>
+                </td>
+            </tr>
+            {% endfor %}
         {% endif %}
+        {% comment %} Handle internal posts and notes {% endcomment %}
+        {% assign all_content = site.posts | concat: site.notes %}
         {% assign sorted_content = all_content | sort: 'date' | reverse %}
         {% for item in sorted_content limit: 8 %}
         <tr>

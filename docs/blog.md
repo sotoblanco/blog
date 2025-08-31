@@ -12,24 +12,27 @@ title: Blog
     </div>
 
     <div class="posts-list">
-        {% assign all_posts = site.posts %}
-        {% if site.external_posts %}
-            {% assign all_posts = all_posts | concat: site.external_posts %}
-        {% endif %}
-        {% assign sorted_posts = all_posts | sort: 'date' | reverse %}
-        {% if sorted_posts.size > 0 %}
+        {% if site.posts.size > 0 or site.external_posts.size > 0 %}
             <div class="posts-table">
                 <table class="post-table">
                     <tbody>
-                        {% for post in sorted_posts %}
+                        {% comment %} Handle external posts first {% endcomment %}
+                        {% if site.external_posts %}
+                            {% for post in site.external_posts %}
+                            <tr>
+                                <td class="post-date">{{ post.date | date: "%b %d, %Y" }}</td>
+                                <td class="post-title">
+                                    <a href="{{ post.external_url }}" target="_blank">{{ post.title }}</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                        {% comment %} Handle internal posts {% endcomment %}
+                        {% for post in site.posts %}
                         <tr>
                             <td class="post-date">{{ post.date | date: "%b %d, %Y" }}</td>
                             <td class="post-title">
-                                {% if post.external_url %}
-                                    <a href="{{ post.external_url }}" target="_blank">{{ post.title }}</a>
-                                {% else %}
-                                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                                {% endif %}
+                                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
                             </td>
                         </tr>
                         {% endfor %}
