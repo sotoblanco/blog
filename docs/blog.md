@@ -93,55 +93,71 @@ Your content here...</code></pre>
 }
 
 .posts-table {
-    max-width: 500px;
-    margin: 0 auto;
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #f0f0f0;
 }
 
 .post-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.95rem;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.95rem;
 }
 
 .post-table tbody tr {
-    border-bottom: 1px solid #f0f0f0;
-    transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  border-radius: 8px;
 }
 
 .post-table tbody tr:hover {
-    background-color: rgba(0, 0, 0, 0.01);
+  background-color: rgba(0, 0, 0, 0.02);
+  transform: translateY(-1px);
 }
 
 .post-table tbody tr:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .post-table td {
-    padding: 0.8rem 0;
-    vertical-align: middle;
-    border: none;
+  padding: 1.2rem 1rem;
+  vertical-align: middle;
+  border: none;
 }
 
 .post-date {
-    color: #888;
-    font-size: 0.85rem;
-    font-weight: 400;
-    white-space: nowrap;
-    font-family: 'Courier New', monospace;
-    width: 80px;
+  color: #666;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  width: 100px;
+  text-align: left;
+  letter-spacing: 0.3px;
+}
+
+.post-title {
+  padding-left: 1.5rem;
 }
 
 .post-title a {
-    color: #333;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    transition: color 0.2s ease;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: color 0.2s ease;
+  display: block;
 }
 
 .post-title a:hover {
-    color: #000;
+  color: #000;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
 .no-posts {
@@ -209,17 +225,29 @@ Your content here...</code></pre>
         font-size: 1.6rem;
     }
     
+    .posts-table {
+        padding: 1rem;
+    }
+    
     .post-table {
         font-size: 0.9rem;
     }
     
     .post-table td {
-        padding: 0.7rem 0;
+        padding: 1rem 0.5rem;
     }
     
-      .post-date {
-    width: 70px;
-    font-size: 0.8rem;
-  }
+    .post-date {
+        font-size: 0.8rem;
+        width: 80px;
+    }
+    
+    .post-title {
+        padding-left: 1rem;
+    }
+    
+    .post-title a {
+        font-size: 0.9rem;
+    }
 }
 </style>

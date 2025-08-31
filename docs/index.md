@@ -135,9 +135,9 @@ title: Home
   font-style: italic;
 }
 
-/* Content Table Styles - Ultra Minimalist Design */
+/* Content Table Styles - Improved Minimalist Design */
 .content-table-section {
-  max-width: 600px;
+  max-width: 700px;
   margin: 4rem auto 2rem;
   padding: 0 2rem;
 }
@@ -152,56 +152,67 @@ title: Home
 }
 
 .table-container {
-  background: transparent;
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 1.5rem;
   margin-bottom: 2rem;
+  border: 1px solid #f0f0f0;
 }
 
 .content-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   font-size: 0.95rem;
   background: transparent;
 }
 
 .content-table tbody tr {
-  border-bottom: 1px solid #f0f0f0;
   transition: all 0.2s ease;
+  border-radius: 8px;
 }
 
 .content-table tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.01);
-}
-
-.content-table tbody tr:last-child {
-  border-bottom: none;
+  background-color: rgba(0, 0, 0, 0.02);
+  transform: translateY(-1px);
 }
 
 .content-table td {
-  padding: 0.8rem 0;
+  padding: 1.2rem 1rem;
   vertical-align: middle;
   border: none;
 }
 
 .date-cell {
-  color: #888;
+  color: #666;
   font-size: 0.85rem;
-  font-weight: 400;
+  font-weight: 500;
   white-space: nowrap;
-  font-family: 'Courier New', monospace;
-  width: 80px;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  width: 100px;
+  text-align: left;
+  letter-spacing: 0.3px;
+}
+
+.title-cell {
+  padding-left: 1.5rem;
 }
 
 .title-cell a {
   color: #333;
   text-decoration: none;
-  font-weight: 400;
-  font-size: 0.95rem;
-  line-height: 1.4;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5;
   transition: color 0.2s ease;
+  display: block;
 }
 
 .title-cell a:hover {
   color: #000;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
 .table-footer {
@@ -270,6 +281,10 @@ title: Home
     margin: 3rem auto 2rem;
   }
   
+  .table-container {
+    padding: 1rem;
+  }
+  
   .content-table-section h2 {
     font-size: 1.3rem;
   }
@@ -279,16 +294,20 @@ title: Home
   }
   
   .content-table td {
-    padding: 0.7rem 0;
+    padding: 1rem 0.5rem;
   }
   
   .date-cell {
     font-size: 0.8rem;
-    width: 70px;
+    width: 80px;
   }
   
-  .table-footer {
-    gap: 0.8rem;
+  .title-cell {
+    padding-left: 1rem;
+  }
+  
+  .title-cell a {
+    font-size: 0.9rem;
   }
 }
 </style>
