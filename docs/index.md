@@ -10,7 +10,7 @@ title: Home
   <div class="content-section">
     <h1>Welcome</h1>
     <p class="intro-text">
-      I am a Machine Learning Engineer with over 7 years of experience. I have worked in many projects for companies, early start-up and individuals that wanted to pursue data to grow their business. I am currently an independent consultant helping business in AI solutions.
+      As a Machine Learning Engineer with 7+ years of experience, I love helping companies find opportunities in their data. I've worked with startups, established businesses, and entrepreneurs to turn their information into business value. Currently, I'm working as an independent consultant, building custom AI tools that solve real-world problems.
     </p>
     <div class="consultation-section">
       <a href="https://cal.com/pastorsoto" target="_blank" class="consultation-btn">
