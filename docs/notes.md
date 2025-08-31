@@ -13,29 +13,25 @@ title: Notes
 
     <div class="notes-content">
         {% if site.notes.size > 0 %}
-            <div class="notes-list">
-                {% for note in site.notes %}
-                <div class="note-item">
-                    <h3><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h3>
-                    {% if note.description %}
-                        <p class="note-description">{{ note.description }}</p>
-                    {% else %}
-                        <p class="note-description">{{ note.content | strip_html | truncatewords: 20 }}</p>
-                    {% endif %}
-                    {% if note.tags %}
-                        <div class="note-tags">
-                            {% for tag in note.tags %}
-                                <span class="note-tag">{{ tag }}</span>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                    <div class="note-meta">
-                        {% if note.date %}
-                            <span class="note-date">{{ note.date | date: "%B %Y" }}</span>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
+            <div class="notes-table">
+                <table class="note-table">
+                    <tbody>
+                        {% for note in site.notes %}
+                        <tr>
+                            <td class="note-title">
+                                <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
+                            </td>
+                            <td class="note-description">
+                                {% if note.description %}
+                                    {{ note.description }}
+                                {% else %}
+                                    {{ note.content | strip_html | truncatewords: 15 }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         {% else %}
             <div class="no-notes">
@@ -69,7 +65,7 @@ Your technical content here...</code></pre>
 
 <style>
 .notes-container {
-    max-width: 1000px;
+    max-width: 700px;
     margin: 0 auto;
     padding: 2rem 1rem;
 }
@@ -81,84 +77,69 @@ Your technical content here...</code></pre>
 
 .intro-section h2 {
     color: #333;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     margin-bottom: 1rem;
+    font-weight: 400;
 }
 
 .intro-section p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #666;
     line-height: 1.6;
 }
 
-.notes-list {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+.notes-table {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.note-item {
-    background: white;
-    border: 1px solid #e9ecef;
-    border-radius: 10px;
-    padding: 1.5rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.note-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
 }
 
-.note-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+.note-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.2s ease;
 }
 
-.note-item h3 {
-    margin: 0 0 1rem 0;
+.note-table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.01);
 }
 
-.note-item h3 a {
+.note-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.note-table td {
+    padding: 1rem 0;
+    vertical-align: top;
+    border: none;
+}
+
+.note-title {
+    color: #333;
+    font-weight: 500;
+    font-size: 1rem;
+    width: 40%;
+    padding-right: 2rem;
+}
+
+.note-title a {
     color: #333;
     text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 600;
+    transition: color 0.2s ease;
 }
 
-.note-item h3 a:hover {
-    color: #007bff;
+.note-title a:hover {
+    color: #000;
 }
 
 .note-description {
     color: #666;
     line-height: 1.5;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-}
-
-.note-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-bottom: 1rem;
-}
-
-.note-tag {
-    background: #e3f2fd;
-    color: #1976d2;
-    padding: 0.2rem 0.6rem;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 500;
-}
-
-.note-meta {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    border-top: 1px solid #f1f3f4;
-    padding-top: 0.8rem;
-}
-
-.note-date {
-    color: #999;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .no-notes {
@@ -216,5 +197,33 @@ Your technical content here...</code></pre>
 .example-info pre code {
     background: none;
     padding: 0;
+}
+
+@media (max-width: 768px) {
+    .notes-container {
+        padding: 1rem;
+    }
+    
+    .intro-section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .note-table {
+        font-size: 0.9rem;
+    }
+    
+    .note-table td {
+        padding: 0.8rem 0;
+    }
+    
+    .note-title {
+        width: 45%;
+        padding-right: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .note-description {
+        font-size: 0.85rem;
+    }
 }
 </style>

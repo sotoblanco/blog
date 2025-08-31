@@ -13,28 +13,20 @@ title: Blog
 
     <div class="posts-list">
         {% if site.posts.size > 0 %}
-            {% for post in site.posts %}
-            <article class="post-item">
-                <div class="post-header">
-                    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-                    <p class="post-date">{{ post.date | date: "%B %d, %Y" }}</p>
-                </div>
-                <div class="post-content">
-                    {% if post.excerpt %}
-                        <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-                    {% else %}
-                        <p>{{ post.content | strip_html | truncatewords: 30 }}</p>
-                    {% endif %}
-                </div>
-                <div class="post-meta">
-                    {% if post.tags %}
-                        {% for tag in post.tags %}
-                            <span class="post-tag">{{ tag }}</span>
+            <div class="posts-table">
+                <table class="post-table">
+                    <tbody>
+                        {% for post in site.posts %}
+                        <tr>
+                            <td class="post-date">{{ post.date | date: "%b %d" }}</td>
+                            <td class="post-title">
+                                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                            </td>
+                        </tr>
                         {% endfor %}
-                    {% endif %}
-                </div>
-            </article>
-            {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         {% else %}
             <div class="no-posts">
                 <h3>Coming Soon!</h3>
@@ -65,7 +57,7 @@ Your content here...</code></pre>
 
 <style>
 .page-content {
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 2rem 1rem;
 }
@@ -77,75 +69,67 @@ Your content here...</code></pre>
 
 .intro-section h2 {
     color: #333;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     margin-bottom: 1rem;
+    font-weight: 400;
 }
 
 .intro-section p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #666;
     line-height: 1.6;
 }
 
-.posts-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.posts-table {
+    max-width: 500px;
+    margin: 0 auto;
 }
 
-.post-item {
-    background: #f8f9fa;
-    padding: 2rem;
-    border-radius: 10px;
-    border-left: 4px solid #007bff;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.post-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
 }
 
-.post-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+.post-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.2s ease;
 }
 
-.post-header h3 {
-    margin: 0 0 0.5rem 0;
+.post-table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.01);
 }
 
-.post-header h3 a {
-    color: #333;
-    text-decoration: none;
-    font-size: 1.4rem;
+.post-table tbody tr:last-child {
+    border-bottom: none;
 }
 
-.post-header h3 a:hover {
-    color: #007bff;
+.post-table td {
+    padding: 0.8rem 0;
+    vertical-align: middle;
+    border: none;
 }
 
 .post-date {
-    color: #007bff;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin: 0 0 1rem 0;
+    color: #888;
+    font-size: 0.85rem;
+    font-weight: 400;
+    white-space: nowrap;
+    font-family: 'Courier New', monospace;
+    width: 60px;
 }
 
-.post-content p {
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+.post-title a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    transition: color 0.2s ease;
 }
 
-.post-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.post-tag {
-    background: #007bff;
-    color: white;
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 500;
+.post-title a:hover {
+    color: #000;
 }
 
 .no-posts {
@@ -202,5 +186,28 @@ Your content here...</code></pre>
 .example-info pre code {
     background: none;
     padding: 0;
+}
+
+@media (max-width: 768px) {
+    .page-content {
+        padding: 1rem;
+    }
+    
+    .intro-section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .post-table {
+        font-size: 0.9rem;
+    }
+    
+    .post-table td {
+        padding: 0.7rem 0;
+    }
+    
+    .post-date {
+        width: 50px;
+        font-size: 0.8rem;
+    }
 }
 </style>
