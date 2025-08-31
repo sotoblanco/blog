@@ -1,1 +1,1 @@
-Sitemap: http://0.0.0.0:4000/blog/sitemap.xml
+Sitemap: https://yourusername.github.io/blog/sitemap.xml
