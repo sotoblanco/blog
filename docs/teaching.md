@@ -14,110 +14,53 @@ title: Teaching
     <div class="offerings-section">
         <h3>What I Offer</h3>
         
-        <div class="offerings-grid">
-            <div class="offering-card">
-                <div class="offering-icon">🎯</div>
-                <h4>One-on-One Mentoring</h4>
-                <p>Personalized guidance for individuals looking to break into ML/AI or advance their existing skills. Tailored learning paths based on your goals.</p>
-                <div class="features">
-                    <span class="feature-tag">Career Guidance</span>
-                    <span class="feature-tag">Skill Assessment</span>
-                    <span class="feature-tag">Project Reviews</span>
-                </div>
-            </div>
-
-            <div class="offering-card">
-                <div class="offering-icon">👥</div>
-                <h4>Corporate Training</h4>
-                <p>Comprehensive ML/AI training programs for teams and organizations. From fundamentals to advanced topics, customized to your industry needs.</p>
-                <div class="features">
-                    <span class="feature-tag">Custom Curriculum</span>
-                    <span class="feature-tag">Hands-on Projects</span>
-                    <span class="feature-tag">Industry Focus</span>
-                </div>
-            </div>
-
-            <div class="offering-card">
-                <div class="offering-icon">🎓</div>
-                <h4>Workshop & Bootcamps</h4>
-                <p>Intensive learning sessions covering specific ML topics. Perfect for quick skill building and staying updated with latest technologies.</p>
-                <div class="features">
-                    <span class="feature-tag">Intensive Learning</span>
-                    <span class="feature-tag">Latest Tech</span>
-                    <span class="feature-tag">Practical Focus</span>
-                </div>
-            </div>
-
-            <div class="offering-card">
-                <div class="offering-icon">📚</div>
-                <h4>Online Courses</h4>
-                <p>Self-paced learning materials and video courses covering machine learning fundamentals to advanced topics.</p>
-                <div class="features">
-                    <span class="feature-tag">Self-Paced</span>
-                    <span class="feature-tag">Video Content</span>
-                    <span class="feature-tag">Lifetime Access</span>
-                </div>
-                <span class="coming-soon">Coming Soon</span>
-            </div>
+        <div class="offerings-table">
+            <table class="offering-table">
+                <tbody>
+                    <tr>
+                        <td class="offering-name">One-on-One Mentoring</td>
+                        <td class="offering-description">Personalized guidance for individuals looking to break into ML/AI or advance their existing skills. Tailored learning paths based on your goals.</td>
+                    </tr>
+                    <tr>
+                        <td class="offering-name">Corporate Training</td>
+                        <td class="offering-description">Comprehensive ML/AI training programs for teams and organizations. From fundamentals to advanced topics, customized to your industry needs.</td>
+                    </tr>
+                    <tr>
+                        <td class="offering-name">Workshop & Bootcamps</td>
+                        <td class="offering-description">Intensive learning sessions covering specific ML topics. Perfect for quick skill building and staying updated with latest technologies.</td>
+                    </tr>
+                    <tr>
+                        <td class="offering-name">Online Courses</td>
+                        <td class="offering-description">Self-paced learning materials and video courses covering machine learning fundamentals to advanced topics.</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
     <div class="topics-section">
         <h3>Topics I Cover</h3>
-        <div class="topics-grid">
-            <div class="topic-category">
-                <h4>🤖 Machine Learning Fundamentals</h4>
-                <ul>
-                    <li>Supervised & Unsupervised Learning</li>
-                    <li>Model Selection & Evaluation</li>
-                    <li>Feature Engineering</li>
-                    <li>Cross-validation & Hyperparameter Tuning</li>
-                </ul>
-            </div>
-
-            <div class="topic-category">
-                <h4>🧠 Deep Learning</h4>
-                <ul>
-                    <li>Neural Networks & Architectures</li>
-                    <li>Computer Vision (CNNs)</li>
-                    <li>Natural Language Processing (RNNs, Transformers)</li>
-                    <li>Transfer Learning & Fine-tuning</li>
-                </ul>
-            </div>
-
-            <div class="topic-category">
-                <h4>📊 Data Science & Analytics</h4>
-                <ul>
-                    <li>Exploratory Data Analysis</li>
-                    <li>Statistical Analysis</li>
-                    <li>Data Visualization</li>
-                    <li>A/B Testing & Experimentation</li>
-                </ul>
-            </div>
-
-            <div class="topic-category">
-                <h4>🚀 MLOps & Production</h4>
-                <ul>
-                    <li>Model Deployment Strategies</li>
-                    <li>CI/CD for ML</li>
-                    <li>Model Monitoring & Maintenance</li>
-                    <li>Scalable ML Systems</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="testimonials-section">
-        <h3>What Students Say</h3>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <p>"Excellent teaching style with practical examples. Really helped me understand complex ML concepts."</p>
-                <div class="testimonial-author">- Previous Student</div>
-            </div>
-            <div class="testimonial-card">
-                <p>"The corporate training session was incredibly valuable for our team. Practical and immediately applicable."</p>
-                <div class="testimonial-author">- Tech Company</div>
-            </div>
+        <div class="topics-table">
+            <table class="topic-table">
+                <tbody>
+                    <tr>
+                        <td class="topic-category">Machine Learning Fundamentals</td>
+                        <td class="topic-list">Supervised & Unsupervised Learning, Model Selection & Evaluation, Feature Engineering, Cross-validation & Hyperparameter Tuning</td>
+                    </tr>
+                    <tr>
+                        <td class="topic-category">Deep Learning</td>
+                        <td class="topic-list">Neural Networks & Architectures, Computer Vision (CNNs), Natural Language Processing (RNNs, Transformers), Transfer Learning & Fine-tuning</td>
+                    </tr>
+                    <tr>
+                        <td class="topic-category">Data Science & Analytics</td>
+                        <td class="topic-list">Exploratory Data Analysis, Statistical Analysis, Data Visualization, A/B Testing & Experimentation</td>
+                    </tr>
+                    <tr>
+                        <td class="topic-category">MLOps & Production</td>
+                        <td class="topic-list">Model Deployment Strategies, CI/CD for ML, Model Monitoring & Maintenance, Scalable ML Systems</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -125,20 +68,17 @@ title: Teaching
         <h3>Start Learning Today</h3>
         <p>Whether you're a beginner or looking to advance your skills, I'm here to help you succeed in your ML journey.</p>
         
-        <div class="contact-info">
-            <div class="contact-item">
-                <strong>Email:</strong> <span class="placeholder">teaching@example.com</span>
-            </div>
-            <div class="contact-item">
-                <strong>Schedule:</strong> <span class="placeholder">Book a consultation call</span>
-            </div>
+        <div class="contact-actions">
+            <a href="https://cal.com/pastorsoto" target="_blank" class="schedule-btn">
+                Schedule a call
+            </a>
         </div>
     </div>
 </div>
 
 <style>
 .teaching-container {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 2rem 1rem;
 }
@@ -150,164 +90,72 @@ title: Teaching
 
 .intro-section h2 {
     color: #333;
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
+    font-weight: 400;
 }
 
 .intro-section p {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: #666;
     line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.offerings-section, .topics-section {
+    margin-bottom: 4rem;
+}
+
+.offerings-section h3, .topics-section h3 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 400;
+}
+
+.offerings-table, .topics-table {
     max-width: 700px;
     margin: 0 auto;
 }
 
-.offerings-section, .topics-section, .testimonials-section, .contact-section {
-    margin-bottom: 4rem;
+.offering-table, .topic-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
 }
 
-.offerings-section h3, .topics-section h3, .testimonials-section h3, .contact-section h3 {
-    color: #333;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    text-align: center;
+.offering-table tbody tr, .topic-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.2s ease;
 }
 
-.offerings-grid {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+.offering-table tbody tr:hover, .topic-table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.01);
 }
 
-.offering-card {
-    background: white;
-    border: 1px solid #e9ecef;
-    border-radius: 15px;
-    padding: 2rem;
-    text-align: center;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.offering-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-}
-
-.offering-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.offering-card h4 {
-    color: #333;
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-}
-
-.offering-card p {
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
-.features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: center;
-}
-
-.feature-tag {
-    background: #e3f2fd;
-    color: #1976d2;
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
-
-.coming-soon {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: #ffc107;
-    color: #333;
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.topics-grid {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
-.topic-category {
-    background: #f8f9fa;
-    border-radius: 10px;
-    padding: 2rem;
-}
-
-.topic-category h4 {
-    color: #333;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.topic-category ul {
-    list-style: none;
-    padding: 0;
-}
-
-.topic-category li {
-    padding: 0.5rem 0;
-    color: #555;
-    border-bottom: 1px solid #e9ecef;
-    position: relative;
-    padding-left: 1rem;
-}
-
-.topic-category li:before {
-    content: "•";
-    color: #007bff;
-    position: absolute;
-    left: 0;
-}
-
-.topic-category li:last-child {
+.offering-table tbody tr:last-child, .topic-table tbody tr:last-child {
     border-bottom: none;
 }
 
-.testimonials-grid {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+.offering-table td, .topic-table td {
+    padding: 1rem 0;
+    vertical-align: top;
+    border: none;
 }
 
-.testimonial-card {
-    background: white;
-    border: 1px solid #e9ecef;
-    border-radius: 10px;
-    padding: 2rem;
-    border-left: 4px solid #28a745;
+.offering-name, .topic-category {
+    color: #333;
+    font-weight: 500;
+    font-size: 1rem;
+    width: 35%;
+    padding-right: 2rem;
 }
 
-.testimonial-card p {
-    color: #555;
-    font-style: italic;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-}
-
-.testimonial-author {
-    color: #28a745;
-    font-weight: 600;
+.offering-description, .topic-list {
+    color: #666;
+    line-height: 1.5;
     font-size: 0.9rem;
 }
 
@@ -315,43 +163,88 @@ title: Teaching
     text-align: center;
     background: #f8f9fa;
     padding: 3rem 2rem;
-    border-radius: 15px;
-}
-
-.contact-section p {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 2rem;
-}
-
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 400px;
+    border-radius: 10px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
-.contact-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background: white;
-    border-radius: 8px;
-    border-left: 4px solid #007bff;
+.contact-section h3 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
 }
 
-.placeholder {
-    color: #999;
-    font-style: italic;
+.contact-section p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.contact-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.schedule-btn {
+    display: inline-block;
+    background: #333;
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.schedule-btn:hover {
+    background: transparent;
+    color: #333;
 }
 
 @media (max-width: 768px) {
-    .contact-item {
-        flex-direction: column;
-        text-align: left;
-        gap: 0.5rem;
+    .teaching-container {
+        padding: 1rem;
+    }
+    
+    .intro-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .intro-section p {
+        font-size: 1rem;
+    }
+    
+    .offering-table, .topic-table {
+        font-size: 0.9rem;
+    }
+    
+    .offering-table td, .topic-table td {
+        padding: 0.8rem 0;
+    }
+    
+    .offering-name, .topic-category {
+        width: 40%;
+        padding-right: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .offering-description, .topic-list {
+        font-size: 0.85rem;
+    }
+    
+    .contact-section {
+        padding: 2rem 1rem;
+    }
+    
+    .schedule-btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
     }
 }
 </style>
