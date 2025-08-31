@@ -12,15 +12,20 @@ title: Blog
     </div>
 
     <div class="posts-list">
-        {% if site.posts.size > 0 %}
+        {% assign all_posts = site.posts | concat: site.external_posts | sort: 'date' | reverse %}
+        {% if all_posts.size > 0 %}
             <div class="posts-table">
                 <table class="post-table">
                     <tbody>
-                        {% for post in site.posts %}
+                        {% for post in all_posts %}
                         <tr>
-                            <td class="post-date">{{ post.date | date: "%b %d" }}</td>
+                            <td class="post-date">{{ post.date | date: "%b %d, %Y" }}</td>
                             <td class="post-title">
-                                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                                {% if post.external_url %}
+                                    <a href="{{ post.external_url }}" target="_blank">{{ post.title }}</a>
+                                {% else %}
+                                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                                {% endif %}
                             </td>
                         </tr>
                         {% endfor %}
@@ -116,7 +121,7 @@ Your content here...</code></pre>
     font-weight: 400;
     white-space: nowrap;
     font-family: 'Courier New', monospace;
-    width: 60px;
+    width: 80px;
 }
 
 .post-title a {
@@ -205,9 +210,9 @@ Your content here...</code></pre>
         padding: 0.7rem 0;
     }
     
-    .post-date {
-        width: 50px;
-        font-size: 0.8rem;
-    }
+      .post-date {
+    width: 70px;
+    font-size: 0.8rem;
+  }
 }
 </style>

@@ -38,6 +38,12 @@ defaults:
     values:
       layout: "default"
 
+# External posts configuration
+external_posts:
+  - title: "My AI Engineering Curriculum for 2025"
+    date: 2024-12-31
+    external_url: "https://pastorsoto.substack.com/p/my-ai-engineering-curriculum-for"
+
 # Exclude files from processing
 exclude:
   - README.md

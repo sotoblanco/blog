@@ -27,18 +27,18 @@ title: Home
   <div class="table-container">
     <table class="content-table">
       <tbody>
-        <tr>
-          <td class="date-cell">Dec 31</td>
-          <td class="title-cell">
-            <a href="https://pastorsoto.substack.com/p/my-ai-engineering-curriculum-for" target="_blank">My AI Engineering Curriculum for 2025</a>
-          </td>
-        </tr>
         {% assign all_content = site.posts | concat: site.notes | sort: 'date' | reverse %}
-        {% for item in all_content limit: 7 %}
+        {% assign external_content = site.external_posts | default: array %}
+        {% assign combined_content = all_content | concat: external_content | sort: 'date' | reverse %}
+        {% for item in combined_content limit: 8 %}
         <tr>
-          <td class="date-cell">{{ item.date | date: "%b %d" }}</td>
+          <td class="date-cell">{{ item.date | date: "%b %d, %Y" }}</td>
           <td class="title-cell">
-            <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+            {% if item.external_url %}
+              <a href="{{ item.external_url }}" target="_blank">{{ item.title }}</a>
+            {% else %}
+              <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+            {% endif %}
           </td>
         </tr>
         {% endfor %}
@@ -177,7 +177,7 @@ title: Home
   font-weight: 400;
   white-space: nowrap;
   font-family: 'Courier New', monospace;
-  width: 60px;
+  width: 80px;
 }
 
 .title-cell a {
@@ -273,7 +273,7 @@ title: Home
   
   .date-cell {
     font-size: 0.8rem;
-    width: 50px;
+    width: 70px;
   }
   
   .table-footer {
