@@ -12,6 +12,12 @@ title: Home
     <p class="intro-text">
       I am a Machine Learning Engineer with over 7 years of experience. I have worked in many projects for companies, early start-up and individuals that wanted to pursue data to grow their business. I am currently an independent consultant helping business in AI solutions.
     </p>
+    <div class="consultation-section">
+      <a href="https://cal.com/pastorsoto" target="_blank" class="consultation-btn">
+        Book a Consultation
+      </a>
+      <p class="consultation-note">15-30 minute meetings available</p>
+    </div>
   </div>
 </div>
 
@@ -22,50 +28,19 @@ title: Home
     <table class="content-table">
       <thead>
         <tr>
-          <th>Title</th>
-          <th>Type</th>
           <th>Date</th>
-          <th>Tags</th>
-          <th>Description</th>
+          <th>Title</th>
         </tr>
       </thead>
       <tbody>
         {% assign all_content = site.posts | concat: site.notes | sort: 'date' | reverse %}
         {% for item in all_content limit: 10 %}
         <tr>
-          <td class="title-cell">
-            <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-          </td>
-          <td class="type-cell">
-            {% if item.collection == 'posts' %}
-              <span class="content-type post-type">Blog Post</span>
-            {% else %}
-              <span class="content-type note-type">Note</span>
-            {% endif %}
-          </td>
           <td class="date-cell">
             {{ item.date | date: "%b %d, %Y" }}
           </td>
-          <td class="tags-cell">
-            {% if item.tags %}
-              {% for tag in item.tags limit: 3 %}
-                <span class="tag">{{ tag }}</span>
-              {% endfor %}
-              {% if item.tags.size > 3 %}
-                <span class="tag-more">+{{ item.tags.size | minus: 3 }}</span>
-              {% endif %}
-            {% else %}
-              <span class="no-tags">—</span>
-            {% endif %}
-          </td>
-          <td class="description-cell">
-            {% if item.excerpt %}
-              {{ item.excerpt | strip_html | truncatewords: 15 }}
-            {% elsif item.description %}
-              {{ item.description | truncatewords: 15 }}
-            {% else %}
-              {{ item.content | strip_html | truncatewords: 15 }}
-            {% endif %}
+          <td class="title-cell">
+            <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
           </td>
         </tr>
         {% endfor %}
@@ -117,59 +92,93 @@ title: Home
   font-size: 1.2rem;
   line-height: 1.6;
   color: #555;
-  margin: 0;
+  margin: 0 0 2rem 0;
 }
 
-/* Content Table Styles */
+.consultation-section {
+  margin-top: 2rem;
+}
+
+.consultation-btn {
+  display: inline-block;
+  background: #333;
+  color: white;
+  text-decoration: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  border: 2px solid #333;
+  transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
+}
+
+.consultation-btn:hover {
+  background: transparent;
+  color: #333;
+}
+
+.consultation-note {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.5rem 0 0 0;
+  font-style: italic;
+}
+
+/* Content Table Styles - Minimalist Design */
 .content-table-section {
-  max-width: 1200px;
+  max-width: 800px;
   margin: 3rem auto 2rem;
   padding: 0 2rem;
 }
 
 .content-table-section h2 {
   color: #333;
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
   text-align: center;
-  font-weight: 600;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 }
 
 .table-container {
-  overflow-x: auto;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: transparent;
   margin-bottom: 2rem;
 }
 
 .content-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  background: transparent;
 }
 
 .content-table thead {
-  background: linear-gradient(135deg, #007bff, #0056b3);
-  color: white;
+  border-bottom: 2px solid #333;
 }
 
 .content-table th {
-  padding: 1rem 0.8rem;
+  padding: 1rem 0;
   text-align: left;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #333;
   text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  border: none;
+}
+
+.content-table th:first-child {
+  width: 120px;
 }
 
 .content-table tbody tr {
-  border-bottom: 1px solid #e9ecef;
-  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #eee;
+  transition: all 0.2s ease;
 }
 
 .content-table tbody tr:hover {
-  background-color: #f8f9fa;
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
 .content-table tbody tr:last-child {
@@ -177,110 +186,52 @@ title: Home
 }
 
 .content-table td {
-  padding: 1rem 0.8rem;
-  vertical-align: top;
-}
-
-.title-cell a {
-  color: #333;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-.title-cell a:hover {
-  color: #007bff;
-}
-
-.type-cell {
-  white-space: nowrap;
-}
-
-.content-type {
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.post-type {
-  background: #e3f2fd;
-  color: #1976d2;
-}
-
-.note-type {
-  background: #f3e5f5;
-  color: #7b1fa2;
+  padding: 1.2rem 0;
+  vertical-align: middle;
+  border: none;
 }
 
 .date-cell {
   color: #666;
   font-size: 0.9rem;
+  font-weight: 400;
   white-space: nowrap;
+  font-family: 'Courier New', monospace;
 }
 
-.tags-cell {
-  min-width: 150px;
+.title-cell a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4;
+  transition: color 0.2s ease;
 }
 
-.tag {
-  display: inline-block;
-  background: #007bff;
-  color: white;
-  padding: 0.2rem 0.6rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  margin: 0.1rem 0.2rem 0.1rem 0;
-  white-space: nowrap;
-}
-
-.tag-more {
-  display: inline-block;
-  background: #6c757d;
-  color: white;
-  padding: 0.2rem 0.5rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  margin: 0.1rem 0.2rem 0.1rem 0;
-}
-
-.no-tags {
-  color: #999;
-  font-style: italic;
-}
-
-.description-cell {
-  color: #555;
-  line-height: 1.5;
-  max-width: 300px;
+.title-cell a:hover {
+  color: #000;
 }
 
 .table-footer {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-top: 1.5rem;
+  gap: 3rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
 }
 
 .view-all-link {
-  color: #007bff;
+  color: #666;
   text-decoration: none;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  border: 2px solid #007bff;
-  border-radius: 25px;
-  transition: all 0.2s ease;
+  font-weight: 400;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease;
 }
 
 .view-all-link:hover {
-  background: #007bff;
-  color: white;
-  transform: translateY(-1px);
+  color: #333;
 }
 
 /* Responsive design */
@@ -308,6 +259,14 @@ title: Home
     font-size: 1.1rem;
   }
   
+  .consultation-btn {
+    display: block;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 0.5rem auto;
+  }
+  
   .content-table-section {
     padding: 0 1rem;
   }
@@ -317,21 +276,19 @@ title: Home
   }
   
   .content-table {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
   
-  .content-table th,
   .content-table td {
-    padding: 0.6rem 0.4rem;
+    padding: 1rem 0;
   }
   
-  .description-cell {
-    display: none;
+  .content-table th:first-child {
+    width: 100px;
   }
   
-  .content-table th:last-child,
-  .content-table td:last-child {
-    display: none;
+  .date-cell {
+    font-size: 0.8rem;
   }
   
   .table-footer {
@@ -342,22 +299,6 @@ title: Home
   .view-all-link {
     display: block;
     text-align: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .tags-cell {
-    min-width: auto;
-  }
-  
-  .tag {
-    font-size: 0.7rem;
-    padding: 0.15rem 0.4rem;
-  }
-  
-  .content-table th:nth-child(4),
-  .content-table td:nth-child(4) {
-    display: none;
   }
 }
 </style>
