@@ -579,29 +579,23 @@ document.addEventListener('DOMContentLoaded', function() {
         showNoteView();
     }
     
-    async function loadNoteContentFromFile(file) {
+    function loadNoteContentFromFile(file) {
         const noteContent = document.getElementById('note-content');
         noteContent.innerHTML = '<div class="loading">Loading content...</div>';
         
-        try {
-            const response = await fetch(file);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
-            const text = await response.text();
-            const { frontMatter, content } = parseMarkdownFile(text);
+        // Get content from embedded data instead of fetching
+        const content = getNoteContentFromFile(file);
+        if (content) {
+            const { frontMatter, markdownContent } = content;
             
             // Update note metadata
             updateNoteMetadata(frontMatter);
             
             // Convert markdown to HTML and display
-            const htmlContent = convertMarkdownToHtml(content);
+            const htmlContent = convertMarkdownToHtml(markdownContent);
             noteContent.innerHTML = htmlContent;
-            
-        } catch (error) {
-            console.error('Error loading note:', error);
-            noteContent.innerHTML = '<p>Error loading content. Please try again.</p>';
+        } else {
+            noteContent.innerHTML = '<p>Content not available.</p>';
         }
     }
     
@@ -785,10 +779,287 @@ document.addEventListener('DOMContentLoaded', function() {
     function getNoteTitle(note) {
         const titles = {
             'data-pipeline-design': 'Data Pipeline Design',
+            'docker-best-practices': 'Docker Best Practices',
             'machine-learning-fundamentals': 'Machine Learning Fundamentals',
             'prompt-engineering': 'Prompt Engineering'
         };
         return titles[note] || note;
+    }
+    
+    function getNoteContentFromFile(file) {
+        const fileContents = {
+            '_notes/data-engineering/data-pipeline-design.md': {
+                frontMatter: {
+                    title: 'Data Pipeline Design',
+                    description: 'Best practices for building scalable and reliable data pipelines',
+                    tags: 'data-engineering, pipelines, etl, architecture',
+                    category: 'data-engineering',
+                    date: '2024-01-20'
+                },
+                markdownContent: `# Data Pipeline Design
+
+## Pipeline Architecture Patterns
+
+### Batch Processing
+- **Use cases**: Daily/weekly data processing, historical analysis
+- **Tools**: Apache Airflow, Luigi, AWS Step Functions
+- **Considerations**: Latency vs throughput, resource optimization
+
+### Stream Processing
+- **Use cases**: Real-time analytics, event-driven applications
+- **Tools**: Apache Kafka, Apache Flink, AWS Kinesis
+- **Considerations**: Event ordering, exactly-once processing
+
+### Lambda Architecture
+- **Components**: Batch layer + Speed layer + Serving layer
+- **Use cases**: Real-time + batch processing requirements
+- **Trade-offs**: Complexity vs flexibility
+
+## Data Quality & Validation
+
+### Schema Evolution
+- **Backward compatibility**: New fields optional
+- **Forward compatibility**: Old fields deprecated gracefully
+- **Tools**: Apache Avro, Protocol Buffers, JSON Schema
+
+### Data Validation
+- **Types**: Schema validation, business rule validation
+- **Tools**: Great Expectations, Deequ, custom validators
+- **Monitoring**: Data quality metrics, alerting
+
+### Error Handling
+- **Dead letter queues**: Failed records processing
+- **Retry mechanisms**: Exponential backoff, circuit breakers
+- **Monitoring**: Error rates, failure patterns
+
+## Performance Optimization
+
+### Partitioning Strategies
+- **Time-based**: Daily/hourly partitions
+- **Hash-based**: Even distribution across partitions
+- **Composite**: Multiple partition keys
+
+### Caching Strategies
+- **Application cache**: Redis, Memcached
+- **Query cache**: Database query results
+- **CDN**: Static data delivery
+
+### Resource Management
+- **Auto-scaling**: Based on workload
+- **Resource limits**: CPU, memory, I/O
+- **Cost optimization**: Spot instances, reserved capacity
+
+## Monitoring & Observability
+
+### Metrics to Track
+- **Throughput**: Records processed per second
+- **Latency**: End-to-end processing time
+- **Error rates**: Failed records percentage
+- **Resource utilization**: CPU, memory, disk I/O
+
+### Logging Best Practices
+- **Structured logging**: JSON format
+- **Log levels**: DEBUG, INFO, WARN, ERROR
+- **Correlation IDs**: Track requests across services
+
+### Alerting
+- **Threshold-based**: Error rate > 5%
+- **Anomaly detection**: Unusual patterns
+- **Escalation**: Multiple notification channels`
+            },
+            '_notes/data-engineering/docker-best-practices.md': {
+                frontMatter: {
+                    title: 'Docker Best Practices',
+                    description: 'Essential Docker commands and best practices for containerization',
+                    tags: 'docker,containers,devops',
+                    category: 'data-engineering',
+                    date: '2025-08-31'
+                },
+                markdownContent: `# Docker Best Practices
+
+## Introduction
+
+Essential Docker commands and best practices for containerization
+
+## Main Content
+
+Add your content here...
+
+## Key Points
+
+- Point 1
+- Point 2
+- Point 3
+
+## Code Examples
+
+\`\`\`bash
+# Add your code examples here
+echo "Hello World"
+\`\`\`
+
+## Important Notes
+
+> **Note**: Add important information, warnings, or tips here.
+
+## Conclusion
+
+Summarize the key takeaways from this note.
+
+## Related Topics
+
+- [Related Note 1](link-to-note)
+- [Related Note 2](link-to-note)`
+            },
+            '_notes/machine-learning-fundamentals.md': {
+                frontMatter: {
+                    title: 'Machine Learning Fundamentals',
+                    description: 'Core concepts and principles every ML practitioner should know',
+                    tags: 'machine-learning, fundamentals, ml',
+                    category: 'machine-learning-engineer',
+                    date: '2024-01-01'
+                },
+                markdownContent: `# Machine Learning Fundamentals
+
+## Core Concepts
+
+Machine learning fundamentals form the foundation of all ML work. Understanding these concepts is essential for building effective models and systems.
+
+## Supervised Learning
+
+In supervised learning, we train models on labeled data to make predictions on new, unseen data.
+
+### Classification
+
+Classification tasks involve predicting discrete categories or classes:
+- Binary classification (two classes)
+- Multi-class classification (multiple classes)
+- Multi-label classification (multiple labels per instance)
+
+### Regression
+
+Regression tasks predict continuous numerical values:
+- Linear regression for simple relationships
+- Polynomial regression for non-linear patterns
+- Time series forecasting
+
+## Unsupervised Learning
+
+Unsupervised learning finds patterns in data without predefined labels:
+- Clustering to group similar data points
+- Dimensionality reduction for feature extraction
+- Anomaly detection for identifying outliers
+
+## Model Evaluation
+
+Proper model evaluation is crucial for understanding performance:
+- Cross-validation for robust performance estimation
+- Metrics selection based on business objectives
+- Bias-variance tradeoff understanding`
+            },
+            '_notes/ai-engineer/prompt-engineering.md': {
+                frontMatter: {
+                    title: 'Prompt Engineering',
+                    description: 'Techniques for crafting effective prompts for large language models',
+                    tags: 'ai-engineer, prompt-engineering, llm, nlp',
+                    category: 'ai-engineer',
+                    date: '2024-01-25'
+                },
+                markdownContent: `# Prompt Engineering
+
+## Core Principles
+
+### Clarity & Specificity
+- **Be explicit**: State exactly what you want
+- **Provide context**: Give relevant background information
+- **Use examples**: Few-shot learning with demonstrations
+- **Specify format**: Define expected output structure
+
+### Role Definition
+- **Expert persona**: "You are an expert data scientist..."
+- **Task context**: "Your task is to analyze this dataset..."
+- **Constraints**: "Use only Python and pandas..."
+
+### Iterative Refinement
+- **Start simple**: Basic prompt first
+- **Test variations**: Try different phrasings
+- **Analyze failures**: Understand why prompts fail
+- **Document patterns**: Build prompt library
+
+## Advanced Techniques
+
+### Chain-of-Thought (CoT)
+- **Format**: "Let's think about this step by step..."
+- **Benefits**: Better reasoning, transparent process
+- **Use cases**: Math problems, logical reasoning
+
+### Self-Consistency
+- **Multiple outputs**: Generate several responses
+- **Consensus**: Choose most common answer
+- **Confidence**: Measure agreement level
+
+### Tree-of-Thoughts
+- **Branching**: Explore multiple reasoning paths
+- **Backtracking**: Return to promising branches
+- **Best-first search**: Prioritize likely solutions
+
+## Prompt Patterns
+
+### Analysis Prompts
+\`\`\`
+Analyze the following [data/text] and provide:
+1. Key insights (3-5 points)
+2. Potential issues or concerns
+3. Recommendations for next steps
+4. Confidence level in your analysis
+
+Data: [your data here]
+\`\`\`
+
+### Creative Prompts
+\`\`\`
+You are a creative [role] with expertise in [domain].
+Create a [output type] that:
+- Addresses [specific requirement]
+- Incorporates [key elements]
+- Maintains [style/tone]
+- Is suitable for [audience]
+
+Please provide your response in [format].
+\`\`\`
+
+### Problem-Solving Prompts
+\`\`\`
+I'm facing this problem: [problem description]
+
+Context:
+- [relevant background]
+- [constraints]
+- [available resources]
+
+Please help me solve this by:
+1. Breaking down the problem
+2. Suggesting multiple approaches
+3. Recommending the best solution
+4. Providing implementation steps
+\`\`\`
+
+## Evaluation & Testing
+
+### Quality Metrics
+- **Relevance**: Does output address the request?
+- **Accuracy**: Is information correct?
+- **Completeness**: Are all aspects covered?
+- **Consistency**: Are responses stable?
+
+### A/B Testing
+- **Prompt variations**: Test different phrasings
+- **Systematic comparison**: Same inputs, different prompts
+- **Statistical significance**: Measure performance differences`
+            }
+        };
+        
+        return fileContents[file] || null;
     }
     
     // Initialize with default category
