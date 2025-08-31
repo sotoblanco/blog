@@ -17,8 +17,11 @@ title: Notes
                     <span class="nav-text">Data Engineering</span>
                 </div>
                 <div class="nav-subitems" id="data-engineering-subitems">
-                    <div class="nav-item nav-subitem" data-note="data-pipeline-design">
+                    <div class="nav-item nav-subitem" data-note="data-pipeline-design" data-file="_notes/data-engineering/data-pipeline-design.md">
                         <span class="nav-text">Data Pipeline Design</span>
+                    </div>
+                    <div class="nav-item nav-subitem" data-note="docker-best-practices" data-file="_notes/data-engineering/docker-best-practices.md">
+                        <span class="nav-text">Docker Best Practices</span>
                     </div>
                 </div>
             </div>
@@ -29,7 +32,7 @@ title: Notes
                     <span class="nav-text">Machine Learning Engineer</span>
                 </div>
                 <div class="nav-subitems" id="machine-learning-engineer-subitems">
-                    <div class="nav-item nav-subitem" data-note="machine-learning-fundamentals">
+                    <div class="nav-item nav-subitem" data-note="machine-learning-fundamentals" data-file="_notes/machine-learning-fundamentals.md">
                         <span class="nav-text">Machine Learning Fundamentals</span>
                     </div>
                 </div>
@@ -41,7 +44,7 @@ title: Notes
                     <span class="nav-text">AI Engineer</span>
                 </div>
                 <div class="nav-subitems" id="ai-engineer-subitems">
-                    <div class="nav-item nav-subitem" data-note="prompt-engineering">
+                    <div class="nav-item nav-subitem" data-note="prompt-engineering" data-file="_notes/ai-engineer/prompt-engineering.md">
                         <span class="nav-text">Prompt Engineering</span>
                     </div>
                 </div>
@@ -68,7 +71,7 @@ title: Notes
                     <tbody>
                         <tr>
                             <td class="note-title">
-                                <a href="#" class="note-link" data-note="data-pipeline-design">Data Pipeline Design</a>
+                                <a href="#" class="note-link" data-note="data-pipeline-design" data-file="_notes/data-engineering/data-pipeline-design.md">Data Pipeline Design</a>
                             </td>
                             <td class="note-description">
                                 Best practices for building scalable and reliable data pipelines
@@ -90,16 +93,17 @@ title: Notes
                     <span class="breadcrumb-item" id="note-title-breadcrumb">Data Pipeline Design</span>
                 </div>
                 <h1 id="note-content-title">Data Pipeline Design</h1>
-                <div class="note-tags">
+                <div class="note-tags" id="note-tags">
                     <span class="tag">DATA</span>
                     <span class="tag">PIPELINES</span>
                 </div>
                 <p id="note-subtitle">Best practices for building scalable and reliable data pipelines</p>
-                <p class="note-date">February 29, 2024</p>
+                <p class="note-date" id="note-date">February 29, 2024</p>
             </div>
 
             <div class="note-content" id="note-content">
                 <!-- Note content will be loaded here -->
+                <div class="loading">Loading content...</div>
             </div>
         </div>
     </div>
@@ -349,6 +353,13 @@ title: Notes
     color: #e0e0e0;
 }
 
+.loading {
+    text-align: center;
+    color: #808080;
+    font-style: italic;
+    padding: 2rem;
+}
+
 .note-content h1, .note-content h2, .note-content h3 {
     color: #ffffff;
     margin-top: 2rem;
@@ -409,6 +420,20 @@ title: Notes
     margin: 1rem 0;
     color: #b0b0b0;
     font-style: italic;
+}
+
+.note-content strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.note-content a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.note-content a:hover {
+    text-decoration: underline;
 }
 
 /* Responsive Design */
@@ -487,7 +512,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Load specific note
             const note = this.dataset.note;
-            loadNote(note);
+            const file = this.dataset.file;
+            loadNote(note, file);
         });
     });
     
@@ -496,7 +522,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target.classList.contains('note-link')) {
             e.preventDefault();
             const note = e.target.dataset.note;
-            loadNote(note);
+            const file = e.target.dataset.file;
+            loadNote(note, file);
         }
     });
     
@@ -533,7 +560,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showCategoryView();
     }
     
-    function loadNote(note) {
+    function loadNote(note, file) {
         currentNote = note;
         
         // Update breadcrumbs
@@ -545,20 +572,142 @@ document.addEventListener('DOMContentLoaded', function() {
         noteTitleBreadcrumb.textContent = getNoteTitle(note);
         noteContentTitle.textContent = getNoteTitle(note);
         
-        // Load note content
-        loadNoteContent(note);
+        // Load note content from file
+        loadNoteContentFromFile(file);
         
         // Show note view
         showNoteView();
     }
     
-    function loadNoteContent(note) {
+    async function loadNoteContentFromFile(file) {
         const noteContent = document.getElementById('note-content');
+        noteContent.innerHTML = '<div class="loading">Loading content...</div>';
         
-        // For now, we'll show placeholder content
-        // In a real implementation, you'd fetch the actual markdown content
-        const content = getNoteContent(note);
-        noteContent.innerHTML = content;
+        try {
+            const response = await fetch(file);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const text = await response.text();
+            const { frontMatter, content } = parseMarkdownFile(text);
+            
+            // Update note metadata
+            updateNoteMetadata(frontMatter);
+            
+            // Convert markdown to HTML and display
+            const htmlContent = convertMarkdownToHtml(content);
+            noteContent.innerHTML = htmlContent;
+            
+        } catch (error) {
+            console.error('Error loading note:', error);
+            noteContent.innerHTML = '<p>Error loading content. Please try again.</p>';
+        }
+    }
+    
+    function parseMarkdownFile(text) {
+        // Simple front matter parser
+        const frontMatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+        const match = text.match(frontMatterRegex);
+        
+        if (match) {
+            const frontMatterText = match[1];
+            const content = match[2];
+            
+            // Parse front matter
+            const frontMatter = {};
+            frontMatterText.split('\n').forEach(line => {
+                const colonIndex = line.indexOf(':');
+                if (colonIndex > 0) {
+                    const key = line.substring(0, colonIndex).trim();
+                    let value = line.substring(colonIndex + 1).trim();
+                    
+                    // Remove quotes if present
+                    if ((value.startsWith('"') && value.endsWith('"')) || 
+                        (value.startsWith("'") && value.endsWith("'"))) {
+                        value = value.slice(1, -1);
+                    }
+                    
+                    frontMatter[key] = value;
+                }
+            });
+            
+            return { frontMatter, content };
+        }
+        
+        return { frontMatter: {}, content: text };
+    }
+    
+    function updateNoteMetadata(frontMatter) {
+        // Update title
+        if (frontMatter.title) {
+            document.getElementById('note-content-title').textContent = frontMatter.title;
+            document.getElementById('note-title-breadcrumb').textContent = frontMatter.title;
+        }
+        
+        // Update subtitle/description
+        if (frontMatter.description) {
+            document.getElementById('note-subtitle').textContent = frontMatter.description;
+        }
+        
+        // Update tags
+        const tagsContainer = document.getElementById('note-tags');
+        if (frontMatter.tags) {
+            const tags = frontMatter.tags.replace(/[\[\]]/g, '').split(',').map(tag => tag.trim());
+            tagsContainer.innerHTML = tags.map(tag => `<span class="tag">${tag.toUpperCase()}</span>`).join('');
+        } else {
+            tagsContainer.innerHTML = '';
+        }
+        
+        // Update date
+        if (frontMatter.date) {
+            const date = new Date(frontMatter.date);
+            document.getElementById('note-date').textContent = date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+    }
+    
+    function convertMarkdownToHtml(markdown) {
+        // Simple markdown to HTML converter
+        let html = markdown;
+        
+        // Headers
+        html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+        html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+        html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+        
+        // Bold
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        
+        // Italic
+        html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        
+        // Code blocks
+        html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+        
+        // Inline code
+        html = html.replace(/`(.*?)`/g, '<code>$1</code>');
+        
+        // Links
+        html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+        
+        // Lists
+        html = html.replace(/^\* (.*$)/gim, '<li>$1</li>');
+        html = html.replace(/^- (.*$)/gim, '<li>$1</li>');
+        
+        // Wrap consecutive list items in ul tags
+        html = html.replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>');
+        
+        // Paragraphs
+        html = html.replace(/^(?!<[h|u|o|p|d|b|t|s|n])(.+)$/gim, '<p>$1</p>');
+        
+        // Clean up empty paragraphs
+        html = html.replace(/<p><\/p>/g, '');
+        
+        return html;
     }
     
     function showCategoryView() {
@@ -594,17 +743,25 @@ document.addEventListener('DOMContentLoaded', function() {
             'data-engineering': `
                 <tr>
                     <td class="note-title">
-                        <a href="#" class="note-link" data-note="data-pipeline-design">Data Pipeline Design</a>
+                        <a href="#" class="note-link" data-note="data-pipeline-design" data-file="_notes/data-engineering/data-pipeline-design.md">Data Pipeline Design</a>
                     </td>
                     <td class="note-description">
                         Best practices for building scalable and reliable data pipelines
+                    </td>
+                </tr>
+                <tr>
+                    <td class="note-title">
+                        <a href="#" class="note-link" data-note="docker-best-practices" data-file="_notes/data-engineering/docker-best-practices.md">Docker Best Practices</a>
+                    </td>
+                    <td class="note-description">
+                        Essential Docker commands and best practices for containerization
                     </td>
                 </tr>
             `,
             'machine-learning-engineer': `
                 <tr>
                     <td class="note-title">
-                        <a href="#" class="note-link" data-note="machine-learning-fundamentals">Machine Learning Fundamentals</a>
+                        <a href="#" class="note-link" data-note="machine-learning-fundamentals" data-file="_notes/machine-learning-fundamentals.md">Machine Learning Fundamentals</a>
                     </td>
                     <td class="note-description">
                         Core concepts and principles every ML practitioner should know
@@ -614,7 +771,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'ai-engineer': `
                 <tr>
                     <td class="note-title">
-                        <a href="#" class="note-link" data-note="prompt-engineering">Prompt Engineering</a>
+                        <a href="#" class="note-link" data-note="prompt-engineering" data-file="_notes/ai-engineer/prompt-engineering.md">Prompt Engineering</a>
                     </td>
                     <td class="note-description">
                         Techniques for crafting effective prompts for large language models
@@ -632,155 +789,6 @@ document.addEventListener('DOMContentLoaded', function() {
             'prompt-engineering': 'Prompt Engineering'
         };
         return titles[note] || note;
-    }
-    
-    function getNoteContent(note) {
-        const contents = {
-            'data-pipeline-design': `
-                <h2>Overview</h2>
-                <p>Data pipeline design is a critical aspect of modern data engineering. This guide covers the fundamental principles and best practices for building scalable, reliable, and maintainable data pipelines.</p>
-                
-                <h2>Key Principles</h2>
-                <ul>
-                    <li><strong>Reliability:</strong> Ensure data consistency and fault tolerance</li>
-                    <li><strong>Scalability:</strong> Design for growth and increased data volumes</li>
-                    <li><strong>Maintainability:</strong> Write clean, documented, and testable code</li>
-                    <li><strong>Monitoring:</strong> Implement comprehensive logging and alerting</li>
-                </ul>
-                
-                <h2>Architecture Patterns</h2>
-                <h3>Batch Processing</h3>
-                <p>Traditional batch processing involves processing data in chunks at scheduled intervals. This approach is suitable for:</p>
-                <ul>
-                    <li>Large datasets that don't require real-time processing</li>
-                    <li>Complex transformations that benefit from batch optimization</li>
-                    <li>Cost-effective processing during off-peak hours</li>
-                </ul>
-                
-                <h3>Stream Processing</h3>
-                <p>Real-time stream processing handles data as it arrives, enabling:</p>
-                <ul>
-                    <li>Immediate insights and actions</li>
-                    <li>Reduced latency for time-sensitive applications</li>
-                    <li>Continuous data processing</li>
-                </ul>
-                
-                <h2>Best Practices</h2>
-                <blockquote>
-                    Always design your pipelines with failure in mind. Implement proper error handling, retry mechanisms, and data validation at every step.
-                </blockquote>
-                
-                <h3>Data Validation</h3>
-                <p>Implement comprehensive data validation at multiple levels:</p>
-                <ul>
-                    <li>Schema validation for data structure</li>
-                    <li>Business rule validation for data quality</li>
-                    <li>Statistical validation for data distribution</li>
-                </ul>
-                
-                <h3>Error Handling</h3>
-                <p>Robust error handling is essential for production pipelines:</p>
-                <ul>
-                    <li>Implement retry logic with exponential backoff</li>
-                    <li>Log detailed error information for debugging</li>
-                    <li>Set up alerts for critical failures</li>
-                    <li>Maintain data lineage for troubleshooting</li>
-                </ul>
-            `,
-            'machine-learning-fundamentals': `
-                <h2>Core Concepts</h2>
-                <p>Machine learning fundamentals form the foundation of all ML work. Understanding these concepts is essential for building effective models and systems.</p>
-                
-                <h2>Supervised Learning</h2>
-                <p>In supervised learning, we train models on labeled data to make predictions on new, unseen data.</p>
-                
-                <h3>Classification</h3>
-                <p>Classification tasks involve predicting discrete categories or classes:</p>
-                <ul>
-                    <li>Binary classification (two classes)</li>
-                    <li>Multi-class classification (multiple classes)</li>
-                    <li>Multi-label classification (multiple labels per instance)</li>
-                </ul>
-                
-                <h3>Regression</h3>
-                <p>Regression tasks predict continuous numerical values:</p>
-                <ul>
-                    <li>Linear regression for simple relationships</li>
-                    <li>Polynomial regression for non-linear patterns</li>
-                    <li>Time series forecasting</li>
-                </ul>
-                
-                <h2>Unsupervised Learning</h2>
-                <p>Unsupervised learning finds patterns in data without predefined labels:</p>
-                <ul>
-                    <li>Clustering to group similar data points</li>
-                    <li>Dimensionality reduction for feature extraction</li>
-                    <li>Anomaly detection for identifying outliers</li>
-                </ul>
-                
-                <h2>Model Evaluation</h2>
-                <p>Proper model evaluation is crucial for understanding performance:</p>
-                <ul>
-                    <li>Cross-validation for robust performance estimation</li>
-                    <li>Metrics selection based on business objectives</li>
-                    <li>Bias-variance tradeoff understanding</li>
-                </ul>
-            `,
-            'prompt-engineering': `
-                <h2>Introduction to Prompt Engineering</h2>
-                <p>Prompt engineering is the art and science of crafting effective inputs for large language models to achieve desired outputs. It's a crucial skill for working with modern AI systems.</p>
-                
-                <h2>Fundamental Principles</h2>
-                <h3>Clarity and Specificity</h3>
-                <p>Clear, specific prompts lead to better results:</p>
-                <ul>
-                    <li>Be explicit about the desired output format</li>
-                    <li>Specify the tone, style, and length</li>
-                    <li>Provide context when necessary</li>
-                </ul>
-                
-                <h3>Few-Shot Learning</h3>
-                <p>Providing examples in your prompt can significantly improve results:</p>
-                <blockquote>
-                    Example: "Translate the following to French: 'Hello' → 'Bonjour'. Now translate: 'Good morning'"
-                </blockquote>
-                
-                <h2>Advanced Techniques</h2>
-                <h3>Chain-of-Thought Prompting</h3>
-                <p>Encourage the model to show its reasoning process:</p>
-                <ul>
-                    <li>Ask for step-by-step explanations</li>
-                    <li>Request intermediate calculations</li>
-                    <li>Use phrases like "Let's think through this step by step"</li>
-                </ul>
-                
-                <h3>Role-Based Prompting</h3>
-                <p>Assign specific roles to guide the model's behavior:</p>
-                <ul>
-                    <li>"You are an expert data scientist..."</li>
-                    <li>"Act as a helpful coding assistant..."</li>
-                    <li>"Pretend you're a teacher explaining to a beginner..."</li>
-                </ul>
-                
-                <h2>Common Pitfalls</h2>
-                <p>Avoid these common prompt engineering mistakes:</p>
-                <ul>
-                    <li>Vague or ambiguous instructions</li>
-                    <li>Overly complex prompts that confuse the model</li>
-                    <li>Failing to specify output constraints</li>
-                    <li>Not testing prompts with different variations</li>
-                </ul>
-                
-                <h2>Best Practices</h2>
-                <ul>
-                    <li>Iterate and refine your prompts</li>
-                    <li>Test with multiple examples</li>
-                    <li>Consider the model's limitations</li>
-                    <li>Document successful prompt patterns</li>
-                </ul>
-            `
-        };
-        return contents[note] || '<p>Content not available.</p>';
     }
     
     // Initialize with default category
