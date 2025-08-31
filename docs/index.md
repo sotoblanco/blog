@@ -14,7 +14,7 @@ title: Home
     </p>
     <div class="consultation-section">
       <a href="https://cal.com/pastorsoto" target="_blank" class="consultation-btn">
-        Book a Consultation
+        Schedule a call
       </a>
       <p class="consultation-note">15-30 minute meetings available</p>
     </div>
@@ -26,19 +26,11 @@ title: Home
   <h2>Latest Content</h2>
   <div class="table-container">
     <table class="content-table">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Title</th>
-        </tr>
-      </thead>
       <tbody>
         {% assign all_content = site.posts | concat: site.notes | sort: 'date' | reverse %}
-        {% for item in all_content limit: 10 %}
+        {% for item in all_content limit: 8 %}
         <tr>
-          <td class="date-cell">
-            {{ item.date | date: "%b %d, %Y" }}
-          </td>
+          <td class="date-cell">{{ item.date | date: "%b %d" }}</td>
           <td class="title-cell">
             <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
           </td>
@@ -49,8 +41,9 @@ title: Home
   </div>
   
   <div class="table-footer">
-    <a href="{{ '/blog' | relative_url }}" class="view-all-link">View All Blog Posts →</a>
-    <a href="{{ '/notes' | relative_url }}" class="view-all-link">View All Notes →</a>
+    <a href="{{ '/blog' | relative_url }}" class="view-all-link">Blog</a>
+    <span class="separator">•</span>
+    <a href="{{ '/notes' | relative_url }}" class="view-all-link">Notes</a>
   </div>
 </div>
 
@@ -125,16 +118,16 @@ title: Home
   font-style: italic;
 }
 
-/* Content Table Styles - Minimalist Design */
+/* Content Table Styles - Ultra Minimalist Design */
 .content-table-section {
-  max-width: 800px;
-  margin: 3rem auto 2rem;
+  max-width: 600px;
+  margin: 4rem auto 2rem;
   padding: 0 2rem;
 }
 
 .content-table-section h2 {
   color: #333;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   margin-bottom: 2rem;
   text-align: center;
   font-weight: 400;
@@ -149,36 +142,17 @@ title: Home
 .content-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 1rem;
+  font-size: 0.95rem;
   background: transparent;
 }
 
-.content-table thead {
-  border-bottom: 2px solid #333;
-}
-
-.content-table th {
-  padding: 1rem 0;
-  text-align: left;
-  font-weight: 500;
-  font-size: 0.9rem;
-  color: #333;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border: none;
-}
-
-.content-table th:first-child {
-  width: 120px;
-}
-
 .content-table tbody tr {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #f0f0f0;
   transition: all 0.2s ease;
 }
 
 .content-table tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.02);
+  background-color: rgba(0, 0, 0, 0.01);
 }
 
 .content-table tbody tr:last-child {
@@ -186,24 +160,25 @@ title: Home
 }
 
 .content-table td {
-  padding: 1.2rem 0;
+  padding: 0.8rem 0;
   vertical-align: middle;
   border: none;
 }
 
 .date-cell {
-  color: #666;
-  font-size: 0.9rem;
+  color: #888;
+  font-size: 0.85rem;
   font-weight: 400;
   white-space: nowrap;
   font-family: 'Courier New', monospace;
+  width: 60px;
 }
 
 .title-cell a {
   color: #333;
   text-decoration: none;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.4;
   transition: color 0.2s ease;
 }
@@ -215,10 +190,11 @@ title: Home
 .table-footer {
   display: flex;
   justify-content: center;
-  gap: 3rem;
+  align-items: center;
+  gap: 1rem;
   margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+  border-top: 1px solid #f0f0f0;
 }
 
 .view-all-link {
@@ -232,6 +208,11 @@ title: Home
 
 .view-all-link:hover {
   color: #333;
+}
+
+.separator {
+  color: #ccc;
+  font-size: 0.8rem;
 }
 
 /* Responsive design */
@@ -269,10 +250,11 @@ title: Home
   
   .content-table-section {
     padding: 0 1rem;
+    margin: 3rem auto 2rem;
   }
   
   .content-table-section h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
   
   .content-table {
@@ -280,25 +262,16 @@ title: Home
   }
   
   .content-table td {
-    padding: 1rem 0;
-  }
-  
-  .content-table th:first-child {
-    width: 100px;
+    padding: 0.7rem 0;
   }
   
   .date-cell {
     font-size: 0.8rem;
+    width: 50px;
   }
   
   .table-footer {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .view-all-link {
-    display: block;
-    text-align: center;
+    gap: 0.8rem;
   }
 }
 </style>
