@@ -5,7 +5,7 @@ title: Home
 
 <div class="home-container">
   <div class="profile-section">
-    <img src="../images/profile_pic.png" alt="Profile Picture" class="profile-image">
+    <img src="images/profile_pic.png" alt="Profile Picture" class="profile-image">
   </div>
   <div class="content-section">
     <h1>Welcome</h1>
