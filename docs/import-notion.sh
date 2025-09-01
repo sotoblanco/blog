@@ -1,6 +1,51 @@
+#!/bin/bash
+
+# Import Notion HTML Script
+# Usage: ./import-notion.sh "Chapter Title" "category" "notion-export.html"
+
+if [ $# -lt 3 ]; then
+    echo "Usage: $0 \"Chapter Title\" \"category\" \"notion-export.html\""
+    echo "Example: $0 \"Data Pipeline Fundamentals\" \"data-engineering\" \"notion-export.html\""
+    exit 1
+fi
+
+TITLE="$1"
+CATEGORY="$2"
+NOTION_FILE="$3"
+
+# Convert title to filename
+FILENAME=$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-\|-$//g')
+
+# Create category directory if it doesn't exist
+mkdir -p "notes/$CATEGORY"
+
+# Create the HTML file
+FILEPATH="notes/$CATEGORY/$FILENAME.html"
+
+# Get current date
+DATE=$(date +%Y-%m-%d)
+
+# Extract content from Notion HTML (basic extraction)
+if [ -f "$NOTION_FILE" ]; then
+    echo "Processing Notion export: $NOTION_FILE"
+    
+    # Extract the main content (this is a basic approach)
+    # You might need to adjust based on Notion's HTML structure
+    CONTENT=$(grep -A 1000 '<div class="notion-page-content' "$NOTION_FILE" | head -n 1000 || cat "$NOTION_FILE")
+    
+    # Clean up the content (remove Notion-specific styling)
+    CLEAN_CONTENT=$(echo "$CONTENT" | sed 's/<div[^>]*class="[^"]*notion-[^"]*"[^>]*>//g' | sed 's/<\/div>//g' | sed 's/<span[^>]*>//g' | sed 's/<\/span>//g')
+    
+else
+    echo "Warning: Notion export file not found. Creating template instead."
+    CLEAN_CONTENT="<h2>Introduction</h2><p>Content from Notion will go here...</p>"
+fi
+
+# Create the HTML file with our styling
+cat > "$FILEPATH" << EOF
 ---
 layout: default
-title: Your Note Title
+title: "$TITLE"
 ---
 
 <style>
@@ -215,93 +260,38 @@ title: Your Note Title
 </style>
 
 <div class="note-header">
-    <a href="../notes" class="back-link">← Back to Notes</a>
+    <a href="/notes" class="back-link">← Back to Notes</a>
     
-    <h1 class="note-title">Your Note Title</h1>
-    <p class="note-subtitle">Brief description of what this note covers</p>
+    <h1 class="note-title">$TITLE</h1>
+    <p class="note-subtitle">Chapter from Data Engineering Notes</p>
     <div class="note-tags">
-        <span class="note-tag">TAG1</span>
-        <span class="note-tag">TAG2</span>
-        <span class="note-tag">TAG3</span>
+        <span class="note-tag">$CATEGORY</span>
+        <span class="note-tag">CHAPTER</span>
     </div>
-    <p class="note-date">January 1, 2024</p>
+    <p class="note-date">$DATE</p>
 </div>
 
 <div class="note-content">
-    <h2>Introduction</h2>
-    <p>Start with an introduction to your topic. This should give readers a clear understanding of what they'll learn from this note.</p>
-
-    <h2>Main Section 1</h2>
-    <h3>Subsection 1.1</h3>
-    <ul>
-        <li><strong>Key Point 1:</strong> Explanation of the key point</li>
-        <li><strong>Key Point 2:</strong> Another important concept</li>
-        <li><strong>Key Point 3:</strong> Additional information</li>
-    </ul>
-
-    <h3>Subsection 1.2</h3>
-    <p>Use bullet points for lists:</p>
-    <ul>
-        <li>First item</li>
-        <li>Second item</li>
-        <li>Third item</li>
-    </ul>
-
-    <h2>Main Section 2</h2>
-            <h3>Code Examples</h3>
-        <p>When you need to show code:</p>
-        <pre><code>def example_function():
-    """This is an example function."""
-    return "Hello, World!"</code></pre>
-
-        <h3>Tables</h3>
-        <p>You can create clean, minimalist tables:</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Feature</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Responsive Design</td>
-                    <td>Works on all devices</td>
-                    <td>✅</td>
-                </tr>
-                <tr>
-                    <td>Clean Typography</td>
-                    <td>Matches site font</td>
-                    <td>✅</td>
-                </tr>
-                <tr>
-                    <td>Hover Effects</td>
-                    <td>Interactive feedback</td>
-                    <td>✅</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3>Important Notes</h3>
-    <blockquote>
-        <strong>Note:</strong> Use blockquotes for important information, warnings, or tips.
-    </blockquote>
-
-    <h2>Best Practices</h2>
-    <ol>
-        <li><strong>First practice:</strong> Description</li>
-        <li><strong>Second practice:</strong> Description</li>
-        <li><strong>Third practice:</strong> Description</li>
-    </ol>
-
-    <h2>Conclusion</h2>
-    <p>Summarize the key takeaways from this note.</p>
-
-    <h2>Related Topics</h2>
-    <ul>
-        <li><a href="related-note-1.html">Related Note 1</a></li>
-        <li><a href="related-note-2.html">Related Note 2</a></li>
-        <li><a href="related-note-3.html">Related Note 3</a></li>
-    </ul>
+$CLEAN_CONTENT
 </div>
+EOF
+
+echo "✅ Created note from Notion export: $FILEPATH"
+echo ""
+echo "📝 Next steps:"
+echo "1. Review and edit the content in $FILEPATH"
+echo "2. Update the navigation in docs/notes.md"
+echo "3. Add the note to the appropriate category section"
+echo ""
+echo "🔗 To add to navigation, add this HTML to docs/notes.md:"
+echo "<div class=\"nav-item nav-subitem\">"
+echo "    <a href=\"notes/$CATEGORY/$FILENAME.html\" class=\"nav-link\">$TITLE</a>"
+echo "</div>"
+echo ""
+echo "📋 And add this to the notes grid:"
+echo "<li><a href=\"notes/$CATEGORY/$FILENAME.html\">$TITLE</a></li>"
+echo ""
+echo "💡 Tips:"
+echo "- You may need to manually clean up the HTML content"
+echo "- Remove any Notion-specific styling that doesn't look right"
+echo "- Add proper headings and structure if needed"

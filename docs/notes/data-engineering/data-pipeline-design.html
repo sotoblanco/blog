@@ -136,6 +136,51 @@ title: Data Pipeline Design
     text-decoration: underline;
 }
 
+/* Table styling */
+.note-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.note-content table th {
+    background: #f8f9fa;
+    color: #333;
+    font-weight: 600;
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 0.95rem;
+}
+
+.note-content table td {
+    padding: 1rem;
+    border-bottom: 1px solid #f1f3f4;
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.note-content table tr:last-child td {
+    border-bottom: none;
+}
+
+.note-content table tr:hover {
+    background: #f8f9fa;
+}
+
+.note-content table tbody tr:nth-child(even) {
+    background: #fafbfc;
+}
+
+.note-content table tbody tr:nth-child(even):hover {
+    background: #f1f3f4;
+}
+
 .back-link {
     display: inline-block;
     margin-bottom: 2rem;
@@ -170,7 +215,7 @@ title: Data Pipeline Design
 </style>
 
 <div class="note-header">
-    <a href="/notes" class="back-link">← Back to Notes</a>
+    <a href="../notes" class="back-link">← Back to Notes</a>
     
     <h1 class="note-title">Data Pipeline Design</h1>
     <p class="note-subtitle">Best practices for building scalable and reliable data pipelines</p>
@@ -270,14 +315,47 @@ title: Data Pipeline Design
         <li><strong>Correlation IDs:</strong> Track requests across services</li>
     </ul>
 
-    <h3>Alerting</h3>
-    <ul>
-        <li><strong>Threshold-based:</strong> Error rate > 5%</li>
-        <li><strong>Anomaly detection:</strong> Unusual patterns</li>
-        <li><strong>Escalation:</strong> Multiple notification channels</li>
-    </ul>
+            <h3>Alerting</h3>
+        <ul>
+            <li><strong>Threshold-based:</strong> Error rate > 5%</li>
+            <li><strong>Anomaly detection:</strong> Unusual patterns</li>
+            <li><strong>Escalation:</strong> Multiple notification channels</li>
+        </ul>
 
-    <blockquote>
+        <h3>Pipeline Comparison</h3>
+        <p>Here's a comparison of different pipeline architectures:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Architecture</th>
+                    <th>Use Case</th>
+                    <th>Complexity</th>
+                    <th>Latency</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Batch Processing</td>
+                    <td>Historical analysis</td>
+                    <td>Low</td>
+                    <td>High</td>
+                </tr>
+                <tr>
+                    <td>Stream Processing</td>
+                    <td>Real-time analytics</td>
+                    <td>High</td>
+                    <td>Low</td>
+                </tr>
+                <tr>
+                    <td>Lambda Architecture</td>
+                    <td>Hybrid approach</td>
+                    <td>Very High</td>
+                    <td>Medium</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <blockquote>
         <strong>Key Principle:</strong> Always design your pipelines with failure in mind. Implement proper error handling, retry mechanisms, and data validation at every step.
     </blockquote>
 </div>
