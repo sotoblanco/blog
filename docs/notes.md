@@ -3,319 +3,274 @@ layout: default
 title: Notes
 ---
 
-<div class="notes-layout">
-    <!-- Sidebar Navigation -->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h2>Notes</h2>
-        </div>
-        
-        <nav class="sidebar-nav">
-            <div class="nav-section">
-                <div class="nav-item nav-category" data-category="data-engineering">
-                    <span class="nav-icon">▶</span>
-                    <span class="nav-text">Data Engineering</span>
-                </div>
-                <div class="nav-subitems" id="data-engineering-subitems">
-                    <div class="nav-item nav-subitem">
-                        <a href="notes/data-engineering/data-pipeline-design.html" class="nav-link">Data Pipeline Design</a>
-                    </div>
-                    <div class="nav-item nav-subitem">
-                        <a href="notes/data-engineering/docker-best-practices.html" class="nav-link">Docker Best Practices</a>
-                    </div>
-                </div>
-            </div>
+# Notes
 
-            <div class="nav-section">
-                <div class="nav-item nav-category" data-category="machine-learning-engineer">
-                    <span class="nav-icon">▶</span>
-                    <span class="nav-text">Machine Learning Engineer</span>
-                </div>
-                <div class="nav-subitems" id="machine-learning-engineer-subitems">
-                    <div class="nav-item nav-subitem">
-                        <a href="notes/machine-learning-engineer/machine-learning-fundamentals.html" class="nav-link">Machine Learning Fundamentals</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="nav-section">
-                <div class="nav-item nav-category" data-category="ai-engineer">
-                    <span class="nav-icon">▶</span>
-                    <span class="nav-text">AI Engineer</span>
-                </div>
-                <div class="nav-subitems" id="ai-engineer-subitems">
-                    <div class="nav-item nav-subitem">
-                        <a href="notes/ai-engineer/prompt-engineering.html" class="nav-link">Prompt Engineering</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
+<div class="page-content">
+    <div class="intro-section">
+        <h2>Latest Notes</h2>
+        <p>Welcome to my notes where I share insights about Data Engineering, Machine Learning, AI technologies, and best practices.</p>
     </div>
 
-    <!-- Main Content Area -->
-    <div class="main-content">
-        <div class="content-header">
-            <h1>Notes</h1>
-            <p>Click on any note in the sidebar to view its content. Each note opens in a new page.</p>
-        </div>
+    <div class="notes-list">
+        {% if site.notes.size > 0 or site.external_notes.size > 0 %}
+            <div class="notes-table">
+                <table class="note-table">
+                    <tbody>
+                        {% comment %} Handle external notes first {% endcomment %}
+                        {% if site.external_notes %}
+                            {% for note in site.external_notes %}
+                            <tr>
+                                <td class="note-date">{{ note.date | date: "%b %d, %Y" }}</td>
+                                <td class="note-category">{{ note.category }}</td>
+                                <td class="note-title">
+                                    <a href="{{ note.external_url }}" target="_blank">{{ note.title }}</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                        {% comment %} Handle internal notes {% endcomment %}
+                        {% for note in site.notes %}
+                        <tr>
+                            <td class="note-date">{{ note.date | date: "%b %d, %Y" }}</td>
+                            <td class="note-category">{{ note.category }}</td>
+                            <td class="note-title">
+                                <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="no-notes">
+                <h3>Coming Soon!</h3>
+                <p>Notes will appear here once you add them to the <code>notes/</code> folder or configure external notes.</p>
+                <div class="example-info">
+                    <h4>How to add notes:</h4>
+                    <ol>
+                        <li><strong>Internal Notes:</strong> Create files in <code>docs/notes/</code> with front matter including title, date, and category</li>
+                        <li><strong>External Notes:</strong> Add to <code>_config.yml</code> under <code>external_notes:</code></li>
+                        <li>Example internal note:
+                            <pre><code>---
+layout: default
+title: "Docker Best Practices"
+date: 2024-01-15
+category: "Data Engineering"
+---
 
-        <div class="content-table-container">
-            <h2>Available Notes</h2>
-            
-            <div class="notes-grid">
-                <div class="note-card">
-                    <h3>Data Engineering</h3>
-                    <ul>
-                        <li><a href="notes/data-engineering/data-pipeline-design.html">Data Pipeline Design</a></li>
-                        <li><a href="notes/data-engineering/docker-best-practices.html">Docker Best Practices</a></li>
-                    </ul>
-                </div>
-                
-                <div class="note-card">
-                    <h3>Machine Learning Engineer</h3>
-                    <ul>
-                        <li><a href="notes/machine-learning-engineer/machine-learning-fundamentals.html">Machine Learning Fundamentals</a></li>
-                    </ul>
-                </div>
-                
-                <div class="note-card">
-                    <h3>AI Engineer</h3>
-                    <ul>
-                        <li><a href="notes/ai-engineer/prompt-engineering.html">Prompt Engineering</a></li>
-                    </ul>
+# Docker Best Practices
+
+Your content here...</code></pre>
+                        </li>
+                        <li>Example external note in <code>_config.yml</code>:
+                            <pre><code>external_notes:
+  - title: "External Note Title"
+    date: 2024-01-15
+    category: "Data Engineering"
+    external_url: "https://example.com/note"</code></pre>
+                        </li>
+                    </ol>
                 </div>
             </div>
-        </div>
+        {% endif %}
     </div>
 </div>
 
 <style>
-.notes-layout {
-    display: flex;
-    min-height: 100vh;
-    background: #1a1a1a;
-    color: #e0e0e0;
+.page-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
 }
 
-/* Sidebar Styles */
-.sidebar {
-    width: 280px;
-    background: #2d2d2d;
-    color: #e0e0e0;
-    padding: 0;
-    overflow-y: auto;
-    border-right: 1px solid #404040;
-    flex-shrink: 0;
+.intro-section {
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
-.sidebar-header {
-    padding: 1.5rem;
-    border-bottom: 1px solid #404040;
-}
-
-.sidebar-header h2 {
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #e0e0e0;
-}
-
-.sidebar-nav {
-    padding: 1rem 0;
-}
-
-.nav-section {
-    margin-bottom: 0.5rem;
-}
-
-.nav-item {
-    padding: 0.75rem 1.5rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    user-select: none;
-}
-
-.nav-item:hover {
-    background: #404040;
-}
-
-.nav-category {
-    font-weight: 500;
-    color: #e0e0e0;
-}
-
-.nav-subitems {
-    display: none;
-    background: #1a1a1a;
-}
-
-.nav-subitems.expanded {
-    display: block;
-}
-
-.nav-subitem {
-    padding-left: 2.5rem;
-    font-size: 0.9rem;
-    color: #b0b0b0;
-}
-
-.nav-subitem:hover {
-    background: #2d2d2d;
-}
-
-.nav-link {
-    color: #b0b0b0;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.nav-link:hover {
-    color: #0066cc;
-}
-
-.nav-icon {
-    font-size: 0.8rem;
-    transition: transform 0.2s ease;
-    color: #808080;
-}
-
-.nav-icon.expanded {
-    transform: rotate(90deg);
-}
-
-.nav-text {
-    flex: 1;
-}
-
-/* Main Content Styles */
-.main-content {
-    flex: 1;
-    padding: 2rem;
-    background: #1a1a1a;
-    overflow-y: auto;
-}
-
-.content-header {
-    margin-bottom: 2rem;
-}
-
-.content-header h1 {
-    margin: 0 0 0.5rem 0;
-    font-size: 2rem;
+.intro-section h2 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
     font-weight: 400;
-    color: #ffffff;
 }
 
-.content-header p {
-    margin: 0;
-    color: #b0b0b0;
+.intro-section p {
     font-size: 1rem;
-    line-height: 1.5;
+    color: #666;
+    line-height: 1.6;
 }
 
-.content-table-container {
-    background: #2d2d2d;
-    border-radius: 8px;
+.notes-table {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #f0f0f0;
+}
+
+.note-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.95rem;
+}
+
+.note-table tbody tr {
+  transition: all 0.2s ease;
+  border-radius: 8px;
+}
+
+.note-table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+  transform: translateY(-1px);
+}
+
+.note-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.note-table td {
+  padding: 1.2rem 1rem;
+  vertical-align: middle;
+  border: none;
+}
+
+.note-date {
+  color: #666;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  width: 100px;
+  text-align: left;
+  letter-spacing: 0.3px;
+}
+
+.note-category {
+  color: #888;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  width: 150px;
+  text-align: left;
+}
+
+.note-title {
+  padding-left: 1.5rem;
+}
+
+.note-title a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: color 0.2s ease;
+  display: block;
+}
+
+.note-title a:hover {
+  color: #000;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.no-notes {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.no-notes h3 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.example-info {
+    text-align: left;
+    max-width: 600px;
+    margin: 2rem auto 0;
     padding: 1.5rem;
-    border: 1px solid #404040;
-}
-
-.content-table-container h2 {
-    margin: 0 0 1.5rem 0;
-    color: #ffffff;
-    font-size: 1.5rem;
-}
-
-.notes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.note-card {
-    background: #404040;
+    background: white;
     border-radius: 8px;
-    padding: 1.5rem;
-    border: 1px solid #555;
+    border: 1px solid #e9ecef;
 }
 
-.note-card h3 {
-    margin: 0 0 1rem 0;
-    color: #ffffff;
-    font-size: 1.2rem;
-    border-bottom: 1px solid #555;
-    padding-bottom: 0.5rem;
+.example-info h4 {
+    color: #333;
+    margin-bottom: 1rem;
 }
 
-.note-card ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+.example-info ol {
+    margin-bottom: 1rem;
 }
 
-.note-card li {
+.example-info li {
     margin-bottom: 0.5rem;
+    color: #555;
 }
 
-.note-card a {
-    color: #0066cc;
-    text-decoration: none;
-    transition: color 0.2s ease;
-    font-size: 0.95rem;
+.example-info pre {
+    background: #f1f3f4;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.9rem;
 }
 
-.note-card a:hover {
-    color: #4da6ff;
-    text-decoration: underline;
+.example-info code {
+    background: #f1f3f4;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9rem;
 }
 
-/* Responsive Design */
+.example-info pre code {
+    background: none;
+    padding: 0;
+}
+
 @media (max-width: 768px) {
-    .notes-layout {
-        flex-direction: column;
-    }
-    
-    .sidebar {
-        width: 100%;
-        max-height: 300px;
-    }
-    
-    .main-content {
+    .page-content {
         padding: 1rem;
     }
     
-    .content-header h1 {
-        font-size: 1.5rem;
+    .intro-section h2 {
+        font-size: 1.6rem;
     }
     
-    .notes-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .note-card {
+    .notes-table {
         padding: 1rem;
+    }
+    
+    .note-table {
+        font-size: 0.9rem;
+    }
+    
+    .note-table td {
+        padding: 1rem 0.5rem;
+    }
+    
+    .note-date {
+        font-size: 0.8rem;
+        width: 80px;
+    }
+    
+    .note-category {
+        font-size: 0.8rem;
+        width: 120px;
+    }
+    
+    .note-title {
+        padding-left: 1rem;
+    }
+    
+    .note-title a {
+        font-size: 0.9rem;
     }
 }
 </style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Category expansion functionality
-    const categoryItems = document.querySelectorAll('.nav-category');
-    
-    categoryItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const category = this.dataset.category;
-            const subitems = document.getElementById(category + '-subitems');
-            const icon = this.querySelector('.nav-icon');
-            
-            // Toggle expansion
-            subitems.classList.toggle('expanded');
-            icon.classList.toggle('expanded');
-        });
-    });
-});
-</script>

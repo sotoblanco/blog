@@ -80,6 +80,23 @@ external_posts:
     date: 2025-04-26
     external_url: "https://pastorsoto.substack.com/p/a-roadmap-for-ml-interview-preparation"
 
+# External notes configuration
+external_notes:
+  - title: "Docker Best Practices"
+    date: 2024-01-15
+    category: "Data Engineering"
+    external_url: "https://example.com/docker-best-practices"
+
+  - title: "Machine Learning Fundamentals"
+    date: 2024-01-10
+    category: "Machine Learning Engineer"
+    external_url: "https://example.com/ml-fundamentals"
+
+  - title: "Prompt Engineering Techniques"
+    date: 2024-01-05
+    category: "AI Engineer"
+    external_url: "https://example.com/prompt-engineering"
+
 # Exclude files from processing
 exclude:
   - README.md
