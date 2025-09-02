@@ -102,6 +102,9 @@ external_notes:
     category: "ML Engineer"
     external_url: "https://www.kaggle.com/code/pastorsoto/pneumonia-classification-tensorflow"
 
+  - title: "Two-Way ANOVA"
+    category: "Statistics"
+    external_url: "https://www.kaggle.com/code/pastorsoto/two-way-anova-tutorial"
 
 
 
