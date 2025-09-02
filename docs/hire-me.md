@@ -171,26 +171,26 @@ title: Hire Me
         </div>
     </div>
 
-    <div class="consultation-section">
-      <!-- Google Calendar Appointment Scheduling begin -->
-      <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
-      <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
-      <script>
-      (function() {
-        var target = document.currentScript;
-        window.addEventListener('load', function() {
-          calendar.schedulingButton.load({
-            url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1P3R7cPyhp3t2X3ySB0P99XaUGD4NhXQkwGEQ-9VRW_9Ouew3j3AkVwRpOdLYSwxEYlgOnHBaR?gv=true',
-            color: '#616161',
-            label: 'Book an appointment',
-            target,
-          });
-        });
-      })();
-      </script>
-      <!-- end Google Calendar Appointment Scheduling -->
-      <p class="consultation-note">15-30 minute meetings available</p>
-    </div>
+        <div class="consultation-section">
+        <!-- Google Calendar Appointment Scheduling begin -->
+        <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+        <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+        <script>
+        (function() {
+            var target = document.currentScript;
+            window.addEventListener('load', function() {
+            calendar.schedulingButton.load({
+                url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1P3R7cPyhp3t2X3ySB0P99XaUGD4NhXQkwGEQ-9VRW_9Ouew3j3AkVwRpOdLYSwxEYlgOnHBaR?gv=true',
+                color: '#616161',
+                label: 'Book an appointment',
+                target,
+            });
+            });
+        })();
+        </script>
+        <!-- end Google Calendar Appointment Scheduling -->
+        <p class="consultation-note">15-30 minute meetings available</p>
+        </div>
 </div>
 
 <style>
