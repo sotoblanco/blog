@@ -92,6 +92,31 @@ Your content here...</code></pre>
     line-height: 1.6;
 }
 
+.connect-section {
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+    text-align: center;
+}
+
+.connect-section h3 {
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.connect-section a {
+    color: #0077b5;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 0 0.5rem;
+    transition: color 0.2s;
+}
+
+.connect-section a:hover {
+    color: #005582;
+    text-decoration: underline;
+}
+
 .posts-table {
   max-width: 700px;
   margin: 0 auto;
@@ -214,6 +239,27 @@ Your content here...</code></pre>
 .example-info pre code {
     background: none;
     padding: 0;
+}
+
+.contact-box {
+    margin: 2rem auto 0;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    max-width: 600px;
+    text-align: center;
+}
+
+.contact-box h3 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.contact-box iframe {
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    background: white;
 }
 
 @media (max-width: 768px) {

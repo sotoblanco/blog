@@ -64,6 +64,18 @@ title: Home
   </div>
 </div>
 
+<!-- Connect Section -->
+<div class="connect-section">
+    <h3>Connect with me</h3>
+    <a href="https://x.com/PastorSotoB1" target="_blank">X (Twitter)</a> &nbsp;|&nbsp;
+    <a href="https://www.linkedin.com/in/pastorsoto/" target="_blank">LinkedIn</a> &nbsp;|&nbsp;
+    <a href="https://github.com/sotoblanco" target="_blank">GitHub</a>
+</div>
+<div class="contact-box">
+    <h3>Ask a Question or Send a Message</h3>
+    <iframe src="https://forms.gle/crZEndJLzD1eJBsYA" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+</div>
+
 <style>
 .home-container {
   display: flex;
@@ -241,6 +253,53 @@ title: Home
 .separator {
   color: #ccc;
   font-size: 0.8rem;
+}
+
+/* Connect Section Styles */
+.connect-section {
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+    text-align: center;
+}
+
+.connect-section h3 {
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.connect-section a {
+    color: #0077b5;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 0 0.5rem;
+    transition: color 0.2s;
+}
+
+.connect-section a:hover {
+    color: #005582;
+    text-decoration: underline;
+}
+
+.contact-box {
+    margin: 2rem auto 0;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    max-width: 600px;
+    text-align: center;
+}
+
+.contact-box h3 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.contact-box iframe {
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    background: white;
 }
 
 /* Responsive design */
