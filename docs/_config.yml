@@ -91,7 +91,7 @@ external_notes:
     external_url: "https://www.kaggle.com/code/pastorsoto/llama-3-2-tutorial"
   
   - title: "AWS Dynamo DB"
-    category: "Data Engineer"
+    category: "Data Engineering"
     external_url: "https://www.kaggle.com/code/pastorsoto/aws-dynamodb-football-data"
 
   - title: "FastAI Brain Tumor classification"
@@ -99,7 +99,7 @@ external_notes:
     external_url: "https://www.kaggle.com/code/pastorsoto/fastai-brain-tumor-mri"
 
   - title: "Pneumonia detection TensorFlow"
-    category: "ML Engineer"
+    category: "ML Engineering"
     external_url: "https://www.kaggle.com/code/pastorsoto/pneumonia-classification-tensorflow"
 
   - title: "Two-Way ANOVA"
