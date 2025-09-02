@@ -13,9 +13,23 @@ title: Home
       As a Machine Learning Engineer with 7+ years of experience, I love helping companies find opportunities in their data. I've worked with startups, established businesses, and entrepreneurs to turn their information into business value. Currently, I'm working as an independent consultant, building custom AI tools that solve real-world problems.
     </p>
     <div class="consultation-section">
-      <a href="https://cal.com/pastorsoto" target="_blank" class="consultation-btn">
-        Schedule a call
-      </a>
+      <!-- Google Calendar Appointment Scheduling begin -->
+      <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+      <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+      <script>
+      (function() {
+        var target = document.currentScript;
+        window.addEventListener('load', function() {
+          calendar.schedulingButton.load({
+            url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1P3R7cPyhp3t2X3ySB0P99XaUGD4NhXQkwGEQ-9VRW_9Ouew3j3AkVwRpOdLYSwxEYlgOnHBaR?gv=true',
+            color: '#616161',
+            label: 'Book an appointment',
+            target,
+          });
+        });
+      })();
+      </script>
+      <!-- end Google Calendar Appointment Scheduling -->
       <p class="consultation-note">15-30 minute meetings available</p>
     </div>
   </div>

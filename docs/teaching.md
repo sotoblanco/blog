@@ -68,11 +68,27 @@ title: Teaching
         <h3>Start Learning Today</h3>
         <p>Whether you're a beginner or looking to advance your skills, I'm here to help you succeed in your ML journey.</p>
         
-        <div class="contact-actions">
-            <a href="https://cal.com/pastorsoto" target="_blank" class="schedule-btn">
-                Schedule a call
-            </a>
+        <div class="consultation-section">
+        <!-- Google Calendar Appointment Scheduling begin -->
+        <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+        <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+        <script>
+        (function() {
+            var target = document.currentScript;
+            window.addEventListener('load', function() {
+            calendar.schedulingButton.load({
+                url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1P3R7cPyhp3t2X3ySB0P99XaUGD4NhXQkwGEQ-9VRW_9Ouew3j3AkVwRpOdLYSwxEYlgOnHBaR?gv=true',
+                color: '#616161',
+                label: 'Book an appointment',
+                target,
+            });
+            });
+        })();
+        </script>
+        <!-- end Google Calendar Appointment Scheduling -->
+        <p class="consultation-note">15-30 minute meetings available</p>
         </div>
+
     </div>
 </div>
 
