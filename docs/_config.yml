@@ -82,20 +82,28 @@ external_posts:
 
 # External notes configuration
 external_notes:
-  - title: "Docker Best Practices"
-    date: 2024-01-15
-    category: "Data Engineering"
-    external_url: "https://example.com/docker-best-practices"
+  - title: "Transformer Anatomy guide"
+    category: "AI Research"
+    external_url: "https://www.kaggle.com/code/pastorsoto/transformer-anatomy-guide"
 
-  - title: "Machine Learning Fundamentals"
-    date: 2024-01-10
-    category: "Machine Learning Engineer"
-    external_url: "https://example.com/ml-fundamentals"
+  - title: "Llama 3.2 Local set-up notebook"
+    category: "AI Engineering"
+    external_url: "https://www.kaggle.com/code/pastorsoto/llama-3-2-tutorial"
+  
+  - title: "AWS Dynamo DB"
+    category: "Data Engineer"
+    external_url: "https://www.kaggle.com/code/pastorsoto/aws-dynamodb-football-data"
 
-  - title: "Prompt Engineering Techniques"
-    date: 2024-01-05
-    category: "AI Engineer"
-    external_url: "https://example.com/prompt-engineering"
+  - title: "FastAI Brain Tumor classification"
+    category: "ML Engineering"
+    external_url: "https://www.kaggle.com/code/pastorsoto/fastai-brain-tumor-mri"
+
+  - title: "Pneumonia detection TensorFlow"
+    category: "ML Engineer"
+    external_url: "https://www.kaggle.com/code/pastorsoto/pneumonia-classification-tensorflow"
+
+
+
 
 # Exclude files from processing
 exclude:
