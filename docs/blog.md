@@ -43,25 +43,6 @@ title: Blog
             <div class="no-posts">
                 <h3>Coming Soon!</h3>
                 <p>Blog posts will appear here once you add them to the <code>_posts/</code> folder.</p>
-                <div class="example-info">
-                    <h4>How to add a blog post:</h4>
-                    <ol>
-                        <li>Create a file in <code>docs/_posts/</code> with format: <code>YYYY-MM-DD-title.md</code></li>
-                        <li>Example: <code>2024-01-15-ai-in-action.md</code></li>
-                        <li>Start your file with:
-                            <pre><code>---
-layout: default
-title: "AI in Action"
-date: 2024-01-15
-tags: [machine-learning, ai]
----
-
-# AI in Action
-
-Your content here...</code></pre>
-                        </li>
-                    </ol>
-                </div>
             </div>
         {% endif %}
     </div>
