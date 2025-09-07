@@ -40,6 +40,11 @@ defaults:
 
 # External posts configuration
 external_posts:
+
+  - title: "How to succeed in AI integration for your business?"
+    date: 2025-09-07
+    external_url: "https://pastorsoto.substack.com/p/how-to-succeed-in-ai-integration"
+
   - title: "AI in Healthcare? Where and how?"
     date: 2025-08-25
     external_url: "https://pastorsoto.substack.com/p/ai-in-healthcare-where-and-how"
@@ -82,6 +87,11 @@ external_posts:
 
 # External notes configuration
 external_notes:
+
+  - title: "Supervised Fine-Tunning Qwen3"
+    category: "AI Research"
+    external_url: "https://www.kaggle.com/code/pastorsoto/supervised-fine-tunning-qwen3"
+
   - title: "Transformer Anatomy guide"
     category: "AI Research"
     external_url: "https://www.kaggle.com/code/pastorsoto/transformer-anatomy-guide"
