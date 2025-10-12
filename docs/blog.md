@@ -49,13 +49,15 @@ title: Blog
 
     <div class="videos-section">
       <h2>Videos</h2>
-      <p class="videos-intro">Selected talks and walkthroughs. Click to watch.</p>
-      <div class="videos-grid">
-        <div class="video">
-          <iframe src="https://www.youtube.com/watch?v=zk0Xpf2SHPU&t" title="Video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <!-- Add more .video blocks as needed -->
-      </div>
+      <p class="videos-intro">Selected talks and walkthroughs. Click a title to open the video in a new tab.</p>
+      <ul class="video-list">
+        <!-- Replace these sample items with your actual video titles and URLs -->
+        <li class="video-item">
+          <a class="video-link" href="https://www.youtube.com/watch?v=zk0Xpf2SHPU&t" target="_blank" rel="noopener">Talk — How InternVL3.5 Decouples Vision and Language for Efficiency </a>
+          <span class="video-meta">— 60 min</span>
+        </li>
+        <!-- Add more items as needed -->
+      </ul>
     </div>
 </div>
 
@@ -268,34 +270,54 @@ title: Blog
 
 .videos-intro {
   color: #666;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-size: 0.95rem;
 }
 
-.videos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-}
-
-.video {
-  background: transparent;
+.video-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+  background: #fafafa;
+  border: 1px solid #f0f0f0;
 }
 
-.video iframe {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 16 / 9;
-  border: 0;
+.video-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.video-item:last-child {
+  border-bottom: none;
+}
+
+.video-link {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.video-link:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+.video-meta {
+  color: #666;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  white-space: nowrap;
 }
 
 /* small screens tweak */
 @media (max-width: 480px) {
   .videos-section { padding: 0; }
-  .videos-intro { font-size: 0.9rem; }
+  .video-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .video-meta { margin-left: 0; }
 }
 
 @media (max-width: 768px) {
