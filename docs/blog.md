@@ -56,6 +56,10 @@ title: Blog
           <a class="video-link" href="https://www.youtube.com/watch?v=zk0Xpf2SHPU&t" target="_blank" rel="noopener">Talk — How InternVL3.5 Decouples Vision and Language for Efficiency </a>
           <span class="video-meta">— 60 min</span>
         </li>
+        <li class="video-item">
+          <a class="video-link" href="https://www.youtube.com/watch?v=5km62e4nDaw&t" target="_blank" rel="noopener">Podcast — From Medicine to Machine Learning: How Public Learning Turned into a Career </a>
+          <span class="video-meta">— 61 min</span>
+        </li>
         <!-- Add more items as needed -->
       </ul>
     </div>
