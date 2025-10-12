@@ -46,6 +46,17 @@ title: Blog
             </div>
         {% endif %}
     </div>
+
+    <div class="videos-section">
+      <h2>Videos</h2>
+      <p class="videos-intro">Selected talks and walkthroughs. Click to watch.</p>
+      <div class="videos-grid">
+        <div class="video">
+          <iframe src="https://www.youtube.com/watch?v=zk0Xpf2SHPU&t" title="Video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <!-- Add more .video blocks as needed -->
+      </div>
+    </div>
 </div>
 
 <style>
@@ -241,6 +252,50 @@ title: Blog
     border-radius: 8px;
     border: 1px solid #e9ecef;
     background: white;
+}
+
+.videos-section {
+  max-width: 900px;
+  margin: 2.5rem auto;
+  padding: 0 1rem;
+  text-align: left;
+}
+
+.videos-section h2 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.videos-intro {
+  color: #666;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.video {
+  background: transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+
+.video iframe {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+/* small screens tweak */
+@media (max-width: 480px) {
+  .videos-section { padding: 0; }
+  .videos-intro { font-size: 0.9rem; }
 }
 
 @media (max-width: 768px) {
