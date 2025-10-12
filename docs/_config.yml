@@ -41,6 +41,18 @@ defaults:
 # External posts configuration
 external_posts:
 
+  - title: "The unfair advantage of metadata strategy in business"
+    date: 2025-10-04
+    external_url: "https://pastorsoto.substack.com/p/the-unfair-advantage-of-metadata?r=1nw8wu"
+
+  - title: "Metadata is all you need"
+    date: 2025-09-21
+    external_url: "https://pastorsoto.substack.com/p/metadata-is-all-you-need?r=1nw8wu"
+
+  - title: "How GPT-OSS/Qwen3 see the world?"
+    date: 2025-09-16
+    external_url: "https://pastorsoto.substack.com/p/how-gpt-ossqwen3-see-the-world?r=1nw8wu"
+
   - title: "How to succeed in AI integration for your business?"
     date: 2025-09-07
     external_url: "https://pastorsoto.substack.com/p/how-to-succeed-in-ai-integration"
