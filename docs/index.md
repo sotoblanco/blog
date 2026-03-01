@@ -10,7 +10,10 @@ title: Home
   <div class="content-section">
     <h1>Welcome</h1>
     <p class="intro-text">
-      As a Machine Learning Engineer with 7+ years of experience, I love helping companies find opportunities in their data. I've worked with startups, established businesses, and entrepreneurs to turn their information into business value. Currently, I'm working as an independent consultant, building custom AI tools that solve real-world problems.
+      I am a <strong>Medical Doctor</strong> and <strong>AI/ML Engineer</strong> based in Mérida, Venezuela. I specialize in bridging the gap between clinical medicine and scalable AI infrastructure, building tools from first principles—starting with the tensors and hospital workflows I live in every day.
+    </p>
+    <p class="intro-text">
+      Currently, I am developing the <strong>Automated Clinical Scribe</strong> to solve clinical documentation burnout and <strong>Code-app</strong> to teach AI engineering by implementation. I help organizations turn complex data into reliable, production-ready healthcare solutions.
     </p>
     <div class="consultation-section">
       <!-- Google Calendar Appointment Scheduling begin -->
