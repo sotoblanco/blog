@@ -8,72 +8,91 @@
     
     <!-- Basic styling -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --text-muted: #666666;
+            --accent: #000000;
+            --border: #eeeeee;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+            --font-mono: "SF Mono", "Roboto Mono", Menlo, monospace;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: var(--font-main);
             line-height: 1.6;
-            color: #333;
-            background-color: #fff;
+            color: var(--text);
+            background-color: var(--bg);
+            -webkit-font-smoothing: antialiased;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 800px; /* Narrower for better readability */
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 2rem;
         }
         
         header {
-            background-color: #f8f9fa;
-            padding: 1rem 0;
-            border-bottom: 1px solid #e9ecef;
+            padding: 4rem 0 2rem;
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: baseline;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
         }
         
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text);
             text-decoration: none;
+            letter-spacing: -0.02em;
         }
         
         nav ul {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
         }
         
         nav a {
-            color: #333;
+            color: var(--text-muted);
             text-decoration: none;
-            font-weight: 500;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.2s ease;
         }
         
         nav a:hover {
-            color: #007bff;
+            color: var(--accent);
         }
         
         main {
-            min-height: calc(100vh - 140px);
-            padding: 2rem 0;
+            min-height: calc(100vh - 300px);
+            padding: 2rem 0 4rem;
         }
         
         footer {
-            background-color: #f8f9fa;
-            padding: 1rem 0;
-            border-top: 1px solid #e9ecef;
-            text-align: center;
-            color: #666;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border);
+            text-align: left;
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
+
+        /* Typography improvements */
+        h1, h2, h3 { 
+            letter-spacing: -0.03em; 
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        p { margin-bottom: 1.2rem; }
     </style>
 </head>
 <body>

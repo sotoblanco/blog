@@ -93,306 +93,126 @@ title: Home
 <style>
 .home-container {
   display: flex;
-  align-items: center;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 2rem;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0 auto 4rem;
 }
 
 .profile-section {
-  flex: 0 0 300px;
+  margin-bottom: 2rem;
 }
 
 .profile-image {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
 }
 
-.content-section {
-  flex: 1;
-  padding-left: 2rem;
+.profile-image:hover {
+  filter: grayscale(0%);
 }
 
 .content-section h1 {
-  color: #333;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
+  font-size: 2.2rem;
+  line-height: 1.1;
+  margin-bottom: 2rem;
 }
 
 .intro-text {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #555;
-  margin: 0 0 2rem 0;
+  font-size: 1.1rem;
+  color: var(--text);
+  max-width: 650px;
 }
 
-.consultation-section {
-  margin-top: 2rem;
+.intro-text strong {
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
 }
 
-.consultation-btn {
-  display: inline-block;
-  background: #333;
-  color: white;
-  text-decoration: none;
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-  border: 2px solid #333;
-  transition: all 0.3s ease;
-  margin-bottom: 0.5rem;
-}
-
-.consultation-btn:hover {
-  background: transparent;
-  color: #333;
-}
-
-.consultation-note {
-  font-size: 0.9rem;
-  color: #666;
-  margin: 0.5rem 0 0 0;
-  font-style: italic;
-}
-
-/* Content Table Styles - Improved Minimalist Design */
+/* Engineering Log / Table Styles */
 .content-table-section {
-  max-width: 700px;
-  margin: 4rem auto 2rem;
-  padding: 0 2rem;
+  margin-top: 4rem;
 }
 
 .content-table-section h2 {
-  color: #333;
-  font-size: 1.5rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
   margin-bottom: 2rem;
-  text-align: center;
-  font-weight: 400;
-  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
 }
 
 .table-container {
-  background: #fafafa;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  border: 1px solid #f0f0f0;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  border: none;
 }
 
 .content-table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 0.95rem;
-  background: transparent;
-}
-
-.content-table tbody tr {
-  transition: all 0.2s ease;
-  border-radius: 8px;
-}
-
-.content-table tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.02);
-  transform: translateY(-1px);
+  border-collapse: collapse;
 }
 
 .content-table td {
-  padding: 1.2rem 1rem;
-  vertical-align: middle;
-  border: none;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
 }
 
 .date-cell {
-  color: #666;
-  font-size: 0.85rem;
-  font-weight: 500;
-  white-space: nowrap;
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
   width: 100px;
-  text-align: left;
-  letter-spacing: 0.3px;
-}
-
-.title-cell {
-  padding-left: 1.5rem;
 }
 
 .title-cell a {
-  color: #333;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--text);
   text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  line-height: 1.5;
-  transition: color 0.2s ease;
-  display: block;
+  display: inline-block;
 }
 
 .title-cell a:hover {
-  color: #000;
   text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
-}
-
-.external-link {
-  display: flex !important;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .link-arrow {
-  font-size: 0.8rem;
-  opacity: 0.5;
-  margin-left: 0.5rem;
+  font-size: 0.7rem;
+  margin-left: 4px;
+  vertical-align: middle;
 }
 
 .table-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
   margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #f0f0f0;
-}
-
-.view-all-link {
-  color: #666;
-  text-decoration: none;
-  font-weight: 400;
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-  transition: color 0.2s ease;
-}
-
-.view-all-link:hover {
-  color: #333;
-}
-
-.separator {
-  color: #ccc;
+  display: flex;
+  gap: 1rem;
   font-size: 0.8rem;
 }
 
-/* Connect Section Styles */
-.connect-section {
-    margin-top: 1.5rem;
-    font-size: 1.05rem;
-    text-align: center;
+.view-all-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
 }
 
-.connect-section h3 {
-    margin-bottom: 0.5rem;
-    color: #333;
-    font-weight: 500;
+.view-all-link:hover {
+  color: var(--text);
+  border-bottom: 1px solid var(--text);
 }
 
-.connect-section a {
-    color: #0077b5;
-    text-decoration: none;
-    font-weight: 500;
-    margin: 0 0.5rem;
-    transition: color 0.2s;
+/* Remove old components */
+.consultation-section, .contact-box, .connect-section {
+    display: none;
 }
 
-.connect-section a:hover {
-    color: #005582;
-    text-decoration: underline;
-}
-
-.contact-box {
-    margin: 2rem auto 0;
-    padding: 1.5rem;
-    background: #f8f9fa;
-    border-radius: 10px;
-    max-width: 600px;
-    text-align: center;
-}
-
-.contact-box h3 {
-    margin-bottom: 1rem;
-    color: #333;
-    font-weight: 500;
-}
-
-.contact-box iframe {
-    border-radius: 8px;
-    border: 1px solid #e9ecef;
-    background: white;
-}
-
-/* Responsive design */
 @media (max-width: 768px) {
-  .home-container {
-    flex-direction: column;
-    text-align: center;
-    padding: 1rem;
-  }
-  
-  .profile-section {
-    flex: none;
-  }
-  
-  .content-section {
-    padding-left: 0;
-    padding-top: 1rem;
-  }
-  
-  .content-section h1 {
-    font-size: 2rem;
-  }
-  
-  .intro-text {
-    font-size: 1.1rem;
-  }
-  
-  .consultation-btn {
-    display: block;
-    text-align: center;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto 0.5rem auto;
-  }
-  
-  .content-table-section {
-    padding: 0 1rem;
-    margin: 3rem auto 2rem;
-  }
-  
-  .table-container {
-    padding: 1rem;
-  }
-  
-  .content-table-section h2 {
-    font-size: 1.3rem;
-  }
-  
-  .content-table {
-    font-size: 0.9rem;
-  }
-  
-  .content-table td {
-    padding: 1rem 0.5rem;
-  }
-  
-  .date-cell {
-    font-size: 0.8rem;
-    width: 80px;
-  }
-  
-  .title-cell {
-    padding-left: 1rem;
-  }
-  
-  .title-cell a {
-    font-size: 0.9rem;
-  }
+  .content-section h1 { font-size: 1.8rem; }
 }
 </style>
