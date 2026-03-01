@@ -46,30 +46,21 @@ title: Home
 
 <!-- Latest Content Table -->
 <div class="content-table-section">
-  <h2>Latest Content</h2>
+  <h2>The Engineering Log</h2>
   <div class="table-container">
     <table class="content-table">
       <tbody>
-        {% comment %} Handle external posts first {% endcomment %}
-        {% if site.external_posts %}
-            {% for post in site.external_posts limit: 8 %}
-            <tr>
-                <td class="date-cell">{{ post.date | date: "%b %d, %Y" }}</td>
-                <td class="title-cell">
-                    <a href="{{ post.external_url }}" target="_blank">{{ post.title }}</a>
-                </td>
-            </tr>
-            {% endfor %}
-        {% endif %}
-        {% comment %} Handle internal posts and notes {% endcomment %}
         {% assign all_content = site.posts | concat: site.notes %}
+        {% if site.external_posts %}
+            {% assign all_content = all_content | concat: site.external_posts %}
+        {% endif %}
         {% assign sorted_content = all_content | sort: 'date' | reverse %}
-        {% for item in sorted_content limit: 8 %}
+        {% for item in sorted_content limit: 12 %}
         <tr>
-          <td class="date-cell">{{ item.date | date: "%b %d, %Y" }}</td>
+          <td class="date-cell">{{ item.date | date: "%b %Y" }}</td>
           <td class="title-cell">
             {% if item.external_url %}
-              <a href="{{ item.external_url }}" target="_blank">{{ item.title }}</a>
+              <a href="{{ item.external_url }}" target="_blank" class="external-link">{{ item.title }} <span class="link-arrow">↗</span></a>
             {% else %}
               <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
             {% endif %}
@@ -248,6 +239,18 @@ title: Home
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
+}
+
+.external-link {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.link-arrow {
+  font-size: 0.8rem;
+  opacity: 0.5;
+  margin-left: 0.5rem;
 }
 
 .table-footer {
